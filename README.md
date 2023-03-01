@@ -14,7 +14,7 @@ Razem Shahin -
 **Issues Added to Completed**
 
 **Weekly Scrum Issue [Link][i1] (1/3/2023)**  
-**Weekly Scrum Issue [Link][i2] (8/3/2023)**
+**Weekly Scrum Issue [Link][i4] (8/3/2023)**
 
 ## Milestone 2: Alpha Release
 
