@@ -4,7 +4,7 @@
 Gilles Myny - 101145477  
 Joshua Gatto -  
 Frank Dow -  
-Razem Shahin -  
+Razem Shahin - 101128970
 
 ## Milestone 1: Early Prototype
 **Issues Added to Backlog**
