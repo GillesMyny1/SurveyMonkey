@@ -24,4 +24,4 @@ Razem Shahin -
 (generate database diagram from intellij and link here)
 
 [i1]: https://github.com/GillesMyny1/SurveyMonkey/issues/1
-[i2]: https://github.com/GillesMyny1/SurveyMonkey/issues/2
+[i4]: https://github.com/GillesMyny1/SurveyMonkey/issues/4
