@@ -7,14 +7,14 @@ Frank Dow -
 Razem Shahin -  
 
 ## Current State of the Project
-######Milestone 1: Early Prototype######
+###### Milestone 1: Early Prototype
 **Issues Added to Backlog**
 
 **Issues Added to In Progress**
 
 **Issues Added to Completed**
 
-**Weekly Scrum Issue Link([#1][i1])**
+**Weekly Scrum Issue Link[#1][i1]**
 
 
 ## Database Schema
