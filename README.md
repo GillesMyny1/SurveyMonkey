@@ -2,7 +2,7 @@
 
 ## Authors
 Gilles Myny - 101145477  
-Joshua Gatto -  
+Joshua Gatto - 101150890  
 Frank Dow -  
 Razem Shahin - 101128970  
 
