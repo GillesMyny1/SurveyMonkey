@@ -5,3 +5,7 @@ Gilles Myny - 101145477
 Joshua Gatto -  
 Frank Dow -  
 Razem Shahin -  
+
+# Current State of the Project
+
+# Database Schema
