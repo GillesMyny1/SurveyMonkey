@@ -3,7 +3,7 @@
 ## Authors
 Gilles Myny - 101145477  
 Joshua Gatto - 101150890  
-Frank Dow - 101140402 
+Frank Dow - 101140402  
 Razem Shahin - 101128970  
 
 ## Milestone 1: Early Prototype
