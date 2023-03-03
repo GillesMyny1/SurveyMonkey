@@ -4,7 +4,6 @@ package com.group11.surveymonkey;
 import java.util.List;
 import java.util.Optional;
 import org.example.SurveyRepository;
-import org.example.BuddyInfoRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,12 +14,12 @@ public class SurveyController {
     private SurveyRepository surveyService;
 
     @PostMapping("/survey")
-    public Survey saveAddressBook(){
+    public Survey saveSurvey(){
         return surveyService.save(new Survey());
     }
 
     @GetMapping({"/survey/{id}"})
-    public Optional<Survey> getAddressBookList(@PathVariable("id") int id) {
+    public Optional<Survey> getSurvey(@PathVariable("id") int id) {
         return surveyService.findById(id);
     }
 
