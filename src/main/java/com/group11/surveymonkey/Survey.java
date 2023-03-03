@@ -11,13 +11,13 @@ public class Survey {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id = null;
     private String surveyName;
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<TextQnA> textList;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<RangeQnA> rangeList;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<ChoiceQnA> choiceList;
 
     public Survey(){}
@@ -55,5 +55,10 @@ public class Survey {
     }
     public void setSurveyName(String surveyName){
         this.surveyName = surveyName;
+    }
+
+    @Override
+    public String toString(){
+        return surveyName;
     }
 }
