@@ -21,6 +21,11 @@ public class TextQnA {
         textAnswers = new ArrayList<>();
     }
 
+    public TextQnA(String question) {
+        textAnswers = new ArrayList<>();
+        this.questionText = question;
+    }
+
     public void addTextAnswer(TextAnswer answer) {
         if(answer != null) {
             textAnswers.add(answer);
