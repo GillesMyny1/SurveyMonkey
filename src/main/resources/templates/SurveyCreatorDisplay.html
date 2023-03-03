@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div>
+  <h1 th:text="${Survey.surveyName}"></h1>
+</div>
+<div th:each="question : ${Survey.choiceList}">
+    <h2 th:text="'Question ' + ${question.id}"></h2>
+    <p th:text="${question.questionText}"></p>
+</div>
+<div>
+    <input type="button" value="+ New Choice List Question" action="">
+</div>
+<div th:each="question : ${Survey.textList}">
+  <h2 th:text="'Question ' + ${question.id}"></h2>
+  <p th:text="${question.questionText}"></p>
+</div>
+<div>
+    <input type="button" value="+ New Text List Question" action="">
+</div>
+<div th:each="question : ${Survey.rangeList}">
+    <h2 th:text="'Question ' + ${question.id}"></h2>
+    <p th:text="${question.questionText}"></p>
+</div>
+<div>
+    <input type="button" value="+ New Range Question" action="">
+</div>
+</body>
+</html>
