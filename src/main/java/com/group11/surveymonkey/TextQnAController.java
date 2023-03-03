@@ -19,8 +19,8 @@ public class TextQnAController {
         return textQnAService.fetchAllTextQnA();
     }
 
-    @GetMapping("/textQnA/{id}")
-    public Optional<TextQnA> fetchTextQnAById(@PathVariable("id") Integer textQnAId) {
+    @GetMapping("/textQnA/{QnAid}")
+    public Optional<TextQnA> fetchTextQnAById(@PathVariable("QnAid") Integer textQnAId) {
         return textQnAService.fetchTextQnAById(textQnAId);
     }
 

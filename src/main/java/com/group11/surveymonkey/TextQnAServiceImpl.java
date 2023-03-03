@@ -3,8 +3,7 @@ package com.group11.surveymonkey;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class TextQnAServiceImpl implements TextQnAService {
@@ -15,7 +14,7 @@ public class TextQnAServiceImpl implements TextQnAService {
     private TextAnswerRepository textAnswerRepository;
 
     /*
-    Save Operations
+    Post Operations
      */
     @Override
     public TextQnA saveTextQnA(TextQnA textQnA) {
@@ -23,7 +22,7 @@ public class TextQnAServiceImpl implements TextQnAService {
     }
 
     /*
-    Read Operations
+    Get Operations
      */
     @Override
     public List<TextQnA> fetchAllTextQnA() {
@@ -36,7 +35,7 @@ public class TextQnAServiceImpl implements TextQnAService {
     }
 
     /*
-    Add Operations
+    Put Operations
      */
     public void addAnswerToTextQnA(Integer textQnAId, TextAnswer textAnswer) {
         TextQnA textQnA = textQnARepository.findById(textQnAId).get();
@@ -45,6 +44,6 @@ public class TextQnAServiceImpl implements TextQnAService {
     }
 
     /*
-    Remove Operations
+    Delete Operations
      */
 }
