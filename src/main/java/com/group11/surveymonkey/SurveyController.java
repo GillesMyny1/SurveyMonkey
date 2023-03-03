@@ -25,7 +25,7 @@ public class SurveyController {
     }
 
     @PutMapping({"/survey/{id}/newQuestion"})
-    public String addBuddy(@RequestParam("qid") Integer QuestionId, @PathVariable("id") int id, @RequestParam("type") int questionType) {
+    public String addQuestion(@RequestParam("qid") Integer QuestionId, @PathVariable("id") int id, @RequestParam("type") int questionType) {
         if (questionType==0){
             TextQnA newQuestion = new TextQnA;
             surveyService.findById(id).ifPresent(x-> x.addTextQnA(newQuestion));
