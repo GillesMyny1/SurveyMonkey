@@ -13,7 +13,7 @@ public class ChoiceQnA {
 
     private String questionText;
 
-    private List<String> choices;
+    private static List<String> choices;
 
     @ManyToOne
     private Survey survey;
