@@ -1,8 +1,5 @@
 package com.group11.surveymonkey;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import jakarta.persistence.*;
 
 @Entity
@@ -11,16 +8,18 @@ public class Survey {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id = null;
     private String surveyName;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "survey")
     private List<TextQnA> textList;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "survey")
     private List<RangeQnA> rangeList;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "survey")
     private List<ChoiceQnA> choiceList;
 
-    public Survey(){}
+    public Survey() {
+
+    }
     public Survey(String surveyName){
         this.surveyName = surveyName;
     }
