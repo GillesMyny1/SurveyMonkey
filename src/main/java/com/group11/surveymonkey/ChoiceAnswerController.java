@@ -16,12 +16,12 @@ public class ChoiceAnswerController {
         return choiceAnswerService.saveChoiceAnswer(choiceAnswer);
     }
 
-    @GetMapping("/textAnswer")
+    @GetMapping("/choiceAnswer")
     public List<ChoiceAnswer> fetchAllChoiceAnswer() {
         return choiceAnswerService.fetchAllChoiceAnswer();
     }
 
-    @GetMapping("/textAnswer/{textAnswerId}")
+    @GetMapping("/choiceAnswer/{choiceAnswerId}")
     public Optional<ChoiceAnswer> fetchChoiceAnswerById(@PathVariable("choiceAnswerId") Integer choiceAnswerId) {
         return choiceAnswerService.fetchChoiceAnswerById(choiceAnswerId);
     }
