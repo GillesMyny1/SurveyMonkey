@@ -5,23 +5,57 @@
     <title></title>
 </head>
 <body>
+<h1>Surveys</h1>
+
 <div>
-  <h1 th:text="${Survey.surveyName}"></h1>
+    <p th:each="survey : ${surveys}">
+        ID: <span th:text="${survey.id}"/>
+        <br>
+        Name: <span th:text="${survey.surveyName}"/>
+        <p>
+            <h3>Choice QnAs</h3>
+            <div th:each="question : ${Survey.choiceList}">
+                Question ID: <p th:text="'Question ' + ${question.id}"></p>
+                Question Text: <p th:text="${question.questionText}"></p>
+            </div>
+            <h3>Text QnAs</h3>
+            <div th:each="question : ${Survey.textList}">
+                Question ID: <p th:text="'Question ' + ${question.id}"></p>
+                Question Text: <p th:text="${question.questionText}"></p>
+            </div>
+            <h3>Range QnAs</h3>
+            <div th:each="question : ${Survey.rangeList}">
+                Question ID: <p th:text="'Question ' + ${question.id}"></p>
+                Question Text: <p th:text="${question.questionText}"></p>
+            </div>
+        </p>
+    </p>
 </div>
-<div th:each="question : ${Survey.choiceList}">
-    <h2 th:text="'Question ' + ${question.id}"></h2>
-    <p th:text="${question.questionText}"></p>
-</div>
-<div th:each="question : ${Survey.textList}">
-  <h2 th:text="'Question ' + ${question.id}"></h2>
-  <p th:text="${question.questionText}"></p>
-</div>
-<div th:each="question : ${Survey.rangeList}">
-    <h2 th:text="'Question ' + ${question.id}"></h2>
-    <p th:text="${question.questionText}"></p>
-</div>
+
 <div>
-    <input type="button" value="+ New Question" action="">
+    <form action = "/createSurvey">
+        <button>
+            Create Survey
+        </button>
+    </form>
+
+    <br><form action = "/createChoiceQnA">
+        <button>
+            + New Choice Question
+        </button>
+    </form>
+
+    <form action = "/createTextQnA">
+        <button>
+            + New Text Question
+        </button>
+    </form>
+
+    <form action = "/createRangeQnA">
+        <button>
+            + New Range Question
+        </button>
+    </form>
 </div>
 </body>
 </html>
