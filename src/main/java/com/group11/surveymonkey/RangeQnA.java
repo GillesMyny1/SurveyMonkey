@@ -24,7 +24,12 @@ public class RangeQnA {
     private List<RangeAnswer> rangeAnswers;
 
     public RangeQnA() {
-        rangeAnswers = new ArrayList<>();
+        this.rangeAnswers = new ArrayList<>();
+    }
+
+    public RangeQnA(String question) {
+        this.rangeAnswers = new ArrayList<>();
+        this.questionText = question;
     }
 
     public void addRangeAnswer(RangeAnswer answer) {

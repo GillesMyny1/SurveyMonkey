@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class SurveyServiceImpl implements SurveyService{
+public class SurveyServiceImpl implements SurveyService {
     @Autowired
     private SurveyRepository surveyRepository;
     private TextQnARepository textQnARepository;

@@ -1,6 +1,7 @@
 package com.group11.surveymonkey;
 
 import jakarta.persistence.*;
+import java.util.*;
 
 @Entity
 public class Survey {
@@ -18,14 +19,19 @@ public class Survey {
     private List<ChoiceQnA> choiceList;
 
     public Survey() {
-
     }
     public Survey(String surveyName){
         this.surveyName = surveyName;
     }
+
     public void addTextQnA(TextQnA newQuestion){
         this.textList.add(newQuestion);
     }
+
+    public List<TextQnA> getTextList() {
+        return this.textList;
+    }
+
     public void setTextList(List<TextQnA> newQuestionList){
         this.textList=newQuestionList;
     }
@@ -33,6 +39,11 @@ public class Survey {
     public void addRangeQnA(RangeQnA newQuestion){
         this.rangeList.add(newQuestion);
     }
+
+    public List<RangeQnA> getRangeList() {
+        return this.rangeList;
+    }
+
     public void setRangeList(List<RangeQnA> newQuestionList){
         this.rangeList=newQuestionList;
     }
@@ -40,9 +51,15 @@ public class Survey {
     public void addChoiceQnA(ChoiceQnA newQuestion){
         this.choiceList.add(newQuestion);
     }
+
+    public List<ChoiceQnA> getChoiceList() {
+        return this.choiceList;
+    }
+
     public void setChoiceList(List<ChoiceQnA> newQuestionList){
         this.choiceList=newQuestionList;
     }
+
     public Integer getSurveyID(){
         return this.id;
     }
@@ -54,10 +71,5 @@ public class Survey {
     }
     public void setSurveyName(String surveyName){
         this.surveyName = surveyName;
-    }
-
-    @Override
-    public String toString(){
-        return surveyName;
     }
 }

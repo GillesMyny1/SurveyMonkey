@@ -2,22 +2,20 @@ package com.group11.surveymonkey;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
+import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.assertj.core.api.FactoryBasedNavigableListAssert.assertThat;
-import static org.junit.Assert.assertEquals;
-
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = SurveyMonkeyApplication.class, webEnvironment = WebEnvironment.RANDOM_PORT)
 class SurveyMonkeyApplicationTests {
-
     @Value(value="${local.server.port}")
-    private int port;
+    int port;
 
     @Autowired
     private TestRestTemplate restTemplate;
@@ -30,7 +28,7 @@ class SurveyMonkeyApplicationTests {
     @Test
     void getPlainSurvey(){
         Survey survey = restTemplate.getForObject("http://localhost:"+port+"/createSurvey", Survey.class);
-        Assertions.assertNotNull(survey.getName());
+        Assertions.assertNotNull(survey.getSurveyName());
         Assertions.assertEquals(survey.getSurveyID(), null);
     }
     @Test
@@ -48,7 +46,7 @@ class SurveyMonkeyApplicationTests {
     }
     @Test
     void addTextQnATest(){
-        HttpEntity<TextQnA> request = new HttpEntity<>(new Survey("Question 1?"));
+        HttpEntity<TextQnA> request = new HttpEntity<>(new TextQnA("Question 1?"));
         TextQnA question = restTemplate.postForObject("http://localhost:"+port+"/createTextQnA",request, TextQnA.class);
         Assertions.assertNotNull(question);
         Assertions.assertEquals(question.getQuestionText(),"Question 1?");
@@ -60,8 +58,8 @@ class SurveyMonkeyApplicationTests {
         Assertions.assertEquals(question.getId(), null);
     }
     @Test
-    void addTextQnATest(){
-        HttpEntity<ChoiceQnA> request = new HttpEntity<>(new Survey("Question 2?"));
+    void addChoiceQnATest(){
+        HttpEntity<ChoiceQnA> request = new HttpEntity<>(new ChoiceQnA("Question 2?"));
         ChoiceQnA question = restTemplate.postForObject("http://localhost:"+port+"/createChoiceQnA",request, ChoiceQnA.class);
         Assertions.assertNotNull(question);
         Assertions.assertEquals(question.getQuestionText(),"Question 2?");
@@ -74,7 +72,7 @@ class SurveyMonkeyApplicationTests {
     }
     @Test
     void addRangeQnATest(){
-        HttpEntity<RangeQnA> request = new HttpEntity<>(new Survey("Question 3?"));
+        HttpEntity<RangeQnA> request = new HttpEntity<>(new RangeQnA("Question 3?"));
         RangeQnA question = restTemplate.postForObject("http://localhost:"+port+"/createRangeQnA",request, RangeQnA.class);
         Assertions.assertNotNull(question);
         Assertions.assertEquals(question.getQuestionText(),"Question 3?");

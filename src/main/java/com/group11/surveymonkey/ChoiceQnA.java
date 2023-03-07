@@ -22,8 +22,14 @@ public class ChoiceQnA {
     private List<ChoiceAnswer> choiceAnswers;
 
     public ChoiceQnA() {
-        choiceAnswers = new ArrayList<>();
-        choices = new ArrayList<>();
+        this.choiceAnswers = new ArrayList<>();
+        this.choices = new ArrayList<>();
+    }
+
+    public ChoiceQnA(String question) {
+        this.choiceAnswers = new ArrayList<>();
+        this.choices = new ArrayList<>();
+        this.questionText = question;
     }
 
     public void addChoiceAnswer(ChoiceAnswer answer) {

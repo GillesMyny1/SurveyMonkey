@@ -1,10 +1,6 @@
 package com.group11.surveymonkey;
 
-
-import java.util.List;
-import java.util.Optional;
-import org.example.SurveyRepository;
-
+import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,13 +22,13 @@ public class SurveyController {
     @PutMapping({"/survey/{id}/newQuestion"})
     public String addQuestion(@RequestParam("qid") Integer QuestionId, @PathVariable("id") int id, @RequestParam("type") int questionType) {
         if (questionType==0){
-            TextQnA newQuestion = new TextQnA;
+            TextQnA newQuestion = new TextQnA();
             surveyService.findById(id).ifPresent(x-> x.addTextQnA(newQuestion));
         }else if (questionType==1){
-            RangeQnA newQuestion = new RangeQnA;
+            RangeQnA newQuestion = new RangeQnA();
             surveyService.findById(id).ifPresent(x-> x.addRangeQnA(newQuestion));
         }else{
-            ChoiceQnA newQuestion = new ChoiceQnA;
+            ChoiceQnA newQuestion = new ChoiceQnA();
             surveyService.findById(id).ifPresent(x-> x.addChoiceQnA(newQuestion));
         }
         surveyService.findById(id).ifPresent(x-> surveyService.save(x));

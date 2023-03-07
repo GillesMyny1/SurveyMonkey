@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
+import java.util.Optional;
+
 @Controller
 public class SurveyWebController {
     @Autowired
@@ -25,7 +27,7 @@ public class SurveyWebController {
         model.addAttribute("textQnAs", textQnARepository.findAll());
         model.addAttribute("choiceQnAs", choiceQnARepository.findAll());
         model.addAttribute("rangeQnAs", rangeQnARepository.findAll());
-        return "displaySurvey";
+        return "SurveyCreatorDisplay";
     }
 
     @GetMapping("/createSurvey")
@@ -36,7 +38,7 @@ public class SurveyWebController {
 
     @PostMapping("/createSurvey")
     public String addSurvey() {
-        Survey survey = new Survey;
+        Survey survey = new Survey();
         surveyRepository.save(survey);
         return "survey";
     }
@@ -76,7 +78,7 @@ public class SurveyWebController {
     @PostMapping("/createRangeQnA")
     public String addRangeQnA(@ModelAttribute RangeQnA rangeQnA, Model model) {
         model.addAttribute("rangeQnA", rangeQnA);
-        textQnARepository.save(rangeQnA);
+        rangeQnARepository.save(rangeQnA);
         return "survey";
     }
 
@@ -88,17 +90,17 @@ public class SurveyWebController {
 
     @PostMapping("/addQnAToSurvey")
     public String addTextQnAToSurvey(@RequestParam("textId") Integer textQnAId, @RequestParam("choiceId") Integer choiceQnAId, @RequestParam("rangeId") Integer rangeQnAId, @RequestParam("surveyId") Integer surveyId) {
-        Survey survey = surveyRepository.findById(surveyId);
+        Survey survey = surveyRepository.findById(surveyId).get();
         if(textQnAId != null) {
-            TextQnA textQnA = textQnARepository.findById(textQnAId);
+            TextQnA textQnA = textQnARepository.findById(textQnAId).get();
             survey.addTextQnA(textQnA);
         }
         if(choiceQnAId != null) {
-            ChoiceQnA choiceQnA = choiceQnARepository.findById(choiceQnAId);
+            ChoiceQnA choiceQnA = choiceQnARepository.findById(choiceQnAId).get();
             survey.addChoiceQnA(choiceQnA);
         }
         if(rangeQnAId != null) {
-            RangeQnA rangeQnA = rangeQnARepository.findById(rangeQnAId);
+            RangeQnA rangeQnA = rangeQnARepository.findById(rangeQnAId).get();
             survey.addRangeQnA(rangeQnA);
         }
         surveyRepository.save(survey);
