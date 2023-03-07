@@ -1,5 +1,8 @@
 package com.group11.surveymonkey;
 
+import com.group11.surveymonkey.entity.Survey;
+import com.group11.surveymonkey.entity.TextQnA;
+import com.group11.surveymonkey.repository.SurveyRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -19,7 +22,7 @@ public class SurveyMonkeyApplication {
     @Bean
     public CommandLineRunner demo(SurveyRepository repositorySurvey) {
         return (args) -> {
-            Survey s = new Survey("First Survey");
+            Survey s = new Survey("Test Survey");
             s.addTextQnA(new TextQnA("Does this work?"));
 
             repositorySurvey.save(s);

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>SYSC 4806 Group 11 - Survey Monkey</title>
+</head>
+<body>
+<h1 th:text="'Add Range Question to ' + ${survey.getSurveyName()}"></h1>
+<form method="post" th:object="${rangeQnA}" th:action="@{/saveRangeQnA}">
+  <label for="questionText">The Question:</label>
+  <input type="text" id="questionText" th:field="*{questionText}">
+  <label for="rangeMin">Minimum Integer in Range:</label>
+  <input type="number" id="rangeMin" th:field="*{minimum}">
+  <label for="rangeMin">Maximum Integer in Range:</label>
+  <input type="number" id="rangeMax" th:field="*{maximum}">
+  <label for="rangeMin">Step Integer in Range:</label>
+  <input type="number" id="rangeStep" th:field="*{step}">
+
+  <button type="submit" id="createRangeQnAButton">Add</button>
+</form>
+</body>
+</html>

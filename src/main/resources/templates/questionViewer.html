@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>SYSC 4806 Group 11 - Survey Monkey</title>
+</head>
+<body>
+    <h1 th:text="'Survey:  ' + ${survey.getSurveyName()} + ' Questions'"></h1>    <h2>Text Questions</h2>
+    <ul>
+        <li th:each="textQnA : ${survey.textList}">
+            <div>
+                <span th:text="${textQnA.questionText}" />
+                <a th:href="@{/answerTextQnA/{surveyId}/{QnAId}(surveyId=${survey.getSurveyID()}, QnAId=${textQnA.id})}">Answer this question</a>
+                <a th:href="@{/textQnA/{QnAId}/viewAnswers(QnAId=${textQnA.id})}">View answers to this question</a>
+            </div>
+        </li>
+    </ul>
+    <h2>Range Questions</h2>
+    <ul>
+        <li th:each="rangeQnA : ${survey.rangeList}">
+            <div>
+                <span th:text="${rangeQnA.questionText}" />
+                <a th:href="@{/answerRangeQnA/{id}(id=${rangeQnA.id})}">Answer this question</a>
+            </div>
+        </li>
+    </ul>
+    <h2>Choice Questions</h2>
+    <ul>
+        <li th:each="choiceQnA : ${survey.choiceList}">
+            <div>
+                <span th:text="${choiceQnA.questionText}" />
+                <a th:href="@{/answerChoiceQnA/{id}(id=${choiceQnA.id})}">Answer this question</a>
+            </div>
+        </li>
+    </ul>
+
+    <a th:href="@{/surveyHome}">Return to Survey Display</a>
+</body>
+</html>
