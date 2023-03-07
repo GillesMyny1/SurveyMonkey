@@ -19,8 +19,14 @@ public class Survey {
     private List<ChoiceQnA> choiceList;
 
     public Survey() {
+        this.textList = new ArrayList<>();
+        this.rangeList = new ArrayList<>();
+        this.choiceList = new ArrayList<>();
     }
-    public Survey(String surveyName){
+    public Survey(String surveyName) {
+        this.textList = new ArrayList<>();
+        this.rangeList = new ArrayList<>();
+        this.choiceList = new ArrayList<>();
         this.surveyName = surveyName;
     }
 

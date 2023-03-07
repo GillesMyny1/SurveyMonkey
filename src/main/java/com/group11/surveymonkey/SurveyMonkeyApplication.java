@@ -10,8 +10,6 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class SurveyMonkeyApplication {
 
-    public SurveyMonkeyApplication() {}
-
     public static void main(String[] args) {
         SpringApplication.run(SurveyMonkeyApplication.class, args);
     }
@@ -19,7 +17,7 @@ public class SurveyMonkeyApplication {
     public static final Logger log = LoggerFactory.getLogger(SurveyMonkeyApplication.class);
 
     @Bean
-    public CommandLineRunner demo(SurveyRepository repositorySurvey){
+    public CommandLineRunner demo(SurveyRepository repositorySurvey) {
         return (args) -> {
             Survey s = new Survey();
             s.addTextQnA(new TextQnA("Does this work?"));

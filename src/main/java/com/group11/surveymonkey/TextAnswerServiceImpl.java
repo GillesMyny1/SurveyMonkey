@@ -6,7 +6,8 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 @Service
 public class TextAnswerServiceImpl implements TextAnswerService {
-    @Autowired TextAnswerRepository textAnswerRepository;
+    @Autowired
+    private TextAnswerRepository textAnswerRepository;
 
     /*
     Post Operations

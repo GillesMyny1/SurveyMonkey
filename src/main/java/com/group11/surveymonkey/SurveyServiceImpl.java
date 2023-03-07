@@ -2,26 +2,47 @@ package com.group11.surveymonkey;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class SurveyServiceImpl implements SurveyService {
     @Autowired
     private SurveyRepository surveyRepository;
+
+    @Autowired
     private TextQnARepository textQnARepository;
+
+    @Autowired
     private RangeQnARepository rangeQnARepository;
+
+    @Autowired
     private ChoiceQnARepository choiceQnARepository;
+
+    /*
+    Post Operations
+     */
     @Override
     public Survey saveSurvey(Survey survey) {
         return surveyRepository.save(survey);
     }
 
+    /*
+    Get Operations
+     */
     @Override
-    public Optional<Survey> getSurvey(Integer surveyId) {
+    public List<Survey> fetchAllSurvey() {
+        return (List<Survey>) surveyRepository.findAll();
+    }
+
+    @Override
+    public Optional<Survey> fetchSurveyById(Integer surveyId) {
         return surveyRepository.findById(surveyId);
     }
 
+    /*
+    Put Operations
+     */
+    /*
     @Override
     public void addQuestion(Integer questionId, Integer surveyId, Integer questionType) {
         Survey upSurvey = surveyRepository.findById(surveyId).get();
@@ -39,4 +60,9 @@ public class SurveyServiceImpl implements SurveyService {
         }
         surveyRepository.save(upSurvey);
     }
+    */
+
+    /*
+    Delete Operations
+     */
 }
