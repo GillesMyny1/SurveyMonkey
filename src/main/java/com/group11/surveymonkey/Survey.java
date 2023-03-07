@@ -9,13 +9,13 @@ public class Survey {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id = null;
     private String surveyName;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "survey")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "textSurvey")
     private List<TextQnA> textList;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "survey")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "rangeSurvey")
     private List<RangeQnA> rangeList;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "survey")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "choiceSurvey")
     private List<ChoiceQnA> choiceList;
 
     public Survey() {
@@ -44,6 +44,7 @@ public class Survey {
     }
 
     public void addRangeQnA(RangeQnA newQuestion){
+        newQuestion.setSurvey(this);
         this.rangeList.add(newQuestion);
     }
 
@@ -56,6 +57,7 @@ public class Survey {
     }
 
     public void addChoiceQnA(ChoiceQnA newQuestion){
+        newQuestion.setSurvey(this);
         this.choiceList.add(newQuestion);
     }
 

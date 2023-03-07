@@ -18,7 +18,7 @@ public class RangeQnA {
     private Integer step;
 
     @ManyToOne
-    private Survey survey;
+    private Survey rangeSurvey;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "rangeQnA")
     private List<RangeAnswer> rangeAnswers;
@@ -79,11 +79,11 @@ public class RangeQnA {
     }
 
     public Survey getSurvey() {
-        return this.survey;
+        return this.rangeSurvey;
     }
 
     public void setSurvey(Survey newSurvey) {
-        this.survey = newSurvey;
+        this.rangeSurvey = newSurvey;
     }
 
     public List<RangeAnswer> getRangeAnswers() {

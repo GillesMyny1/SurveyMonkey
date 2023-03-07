@@ -12,7 +12,7 @@ public class TextQnA {
     private String questionText;
 
     @ManyToOne
-    private Survey survey;
+    private Survey textSurvey;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "textQnA")
     private List<TextAnswer> textAnswers;
@@ -49,11 +49,11 @@ public class TextQnA {
     }
 
     public Survey getSurvey() {
-        return this.survey;
+        return this.textSurvey;
     }
 
     public void setSurvey(Survey newSurvey) {
-        this.survey = newSurvey;
+        this.textSurvey = newSurvey;
     }
 
     public List<TextAnswer> getTextAnswers() {

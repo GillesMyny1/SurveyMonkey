@@ -16,7 +16,7 @@ public class ChoiceQnA {
     private static List<String> choices;
 
     @ManyToOne
-    private Survey survey;
+    private Survey choiceSurvey;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "choiceQnA")
     private List<ChoiceAnswer> choiceAnswers;
@@ -63,11 +63,11 @@ public class ChoiceQnA {
     }
 
     public Survey getSurvey() {
-        return this.survey;
+        return this.choiceSurvey;
     }
 
     public void setSurvey(Survey newSurvey) {
-        this.survey = newSurvey;
+        this.choiceSurvey = newSurvey;
     }
 
     public List<ChoiceAnswer> getChoiceAnswers() {
