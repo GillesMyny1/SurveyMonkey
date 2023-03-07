@@ -1,4 +1,5 @@
 # SYSC 4806 Group 11 - SurveyMonkey
+![Build](https:/github.com/GillesMyny1/SurveyMonkey/actions/workflows/maven.yml/badge.svg)
 
 ## Authors
 Gilles Myny - 101145477  
