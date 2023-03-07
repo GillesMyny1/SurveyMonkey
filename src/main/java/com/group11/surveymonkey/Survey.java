@@ -35,6 +35,16 @@ public class Survey {
         this.textList.add(newQuestion);
     }
 
+    public void addChoiceQnA(ChoiceQnA newQuestion){
+        newQuestion.setSurvey(this);
+        this.choiceList.add(newQuestion);
+    }
+
+    public void addRangeQnA(RangeQnA newQuestion){
+        newQuestion.setSurvey(this);
+        this.rangeList.add(newQuestion);
+    }
+
     public List<TextQnA> getTextList() {
         return this.textList;
     }
@@ -43,22 +53,12 @@ public class Survey {
         this.textList=newQuestionList;
     }
 
-    public void addRangeQnA(RangeQnA newQuestion){
-        newQuestion.setSurvey(this);
-        this.rangeList.add(newQuestion);
-    }
-
     public List<RangeQnA> getRangeList() {
         return this.rangeList;
     }
 
     public void setRangeList(List<RangeQnA> newQuestionList){
         this.rangeList=newQuestionList;
-    }
-
-    public void addChoiceQnA(ChoiceQnA newQuestion){
-        newQuestion.setSurvey(this);
-        this.choiceList.add(newQuestion);
     }
 
     public List<ChoiceQnA> getChoiceList() {
