@@ -46,10 +46,10 @@ class SurveyMonkeyApplicationTests {
     }
     @Test
     void addTextQnATest(){
-        HttpEntity<TextQnA> request = new HttpEntity<>(new TextQnA("Question 1?"));
+        HttpEntity<TextQnA> request = new HttpEntity<TextQnA>(new TextQnA("Question 1?"));
         TextQnA question = restTemplate.postForObject("http://localhost:"+port+"/createTextQnA",request, TextQnA.class);
         Assertions.assertNotNull(question);
-        Assertions.assertEquals(question.getQuestionText(),"Question 1?");
+        Assertions.assertEquals("Question 1?",question.getQuestionText());
     }
     @Test
     void getChoiceQnATest(){

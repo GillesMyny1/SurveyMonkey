@@ -19,7 +19,7 @@ public class SurveyMonkeyApplication {
     @Bean
     public CommandLineRunner demo(SurveyRepository repositorySurvey) {
         return (args) -> {
-            Survey s = new Survey();
+            Survey s = new Survey("First Survey");
             s.addTextQnA(new TextQnA("Does this work?"));
 
             repositorySurvey.save(s);
