@@ -26,7 +26,7 @@ public class RangeQnAController {
         return rangeQnAService.fetchRangeQnAById(rangeQnAId);
     }
 
-    @PutMapping("/textQnA/{QnAId}")
+    @PutMapping("/rangeQnA/{QnAId}")
     public void addAnswerToRangeQnA(@PathVariable("QnAId") Integer rangeQnAId, @RequestBody RangeAnswer rangeAnswer) {
         rangeQnAService.addAnswerToRangeQnA(rangeQnAId, rangeAnswer);
     }
