@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>SYSC 4806 Group 11 - Survey Monkey</title>
+</head>
+<body>
+    <h1 th:text="'Add Choice Question to ' + ${survey.getSurveyName()}"></h1>
+    <form method="post" th:object="${choiceQnA}" th:action="@{/saveChoiceQnA}">
+        <label for="questionText">The Question:</label>
+        <input type="text" id="questionText" th:field="*{questionText}">
+
+        <label for="choices">Choices:</label><br/>
+        <div id="choices">
+            <div th:each="choice, choiceStatus : *{choices}" th:remove="tag">
+                <input type="text" th:field="*{choices[__${choiceStatus.index}__]}" />
+                <button type="button" onclick="removeChoice(this)">Remove</button><br/>
+            </div>
+        </div>
+        <button type="button" onclick="addChoice()">Add Choice</button><br/><br/>
+
+        <button type="submit" id="createChoiceQnAButton">Add</button>
+    </form>
+
+    <script th:inline="javascript">
+        function addChoice() {
+            var choicesDiv = document.getElementById("choices");
+            var newDiv = document.createElement("div");
+            var index = choicesDiv.childElementCount;
+            var newInput = document.createElement("input");
+            newInput.type = "text";
+            newInput.name = "choices[" + index + "]";
+            newDiv.appendChild(newInput);
+            var newButton = document.createElement("button");
+            newButton.type = "button";
+            newButton.textContent = "Remove";
+            newButton.onclick = function() { removeChoice(this); };
+            newDiv.appendChild(newButton);
+            choicesDiv.appendChild(newDiv);
+        }
+
+        function removeChoice(button) {
+            var div = button.parentNode;
+            div.parentNode.removeChild(div);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>SYSC 4806 Group 11 - Survey Monkey</title>
+</head>
+<body>
+  <h1>Create a Survey</h1>
+  <form method="post" th:object="${newSurvey}" th:action="@{/saveSurvey}">
+    <label for="surveyName">Name of the Survey:</label>
+    <input type="text" id="surveyName" th:field="*{surveyName}">
+
+    <button type="submit" id="createSurveyButton">Create</button>
+  </form>
+</body>
+</html>

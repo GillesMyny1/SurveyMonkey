@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>SYSC 4806 Group 11 - Survey Monkey</title>
+  <style>
+    th {
+      border: solid 2px black;
+      padding: 5px 5px;
+      background-color: lightblue;
+    }
+    td {
+      border: solid 1px black;
+      padding: 2px 2px;
+      background-color: lightgreen;
+    }
+  </style>
+</head>
+<body>
+  <h1>Survey Display</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Survey ID</th>
+        <th>Survey Name</th>
+      </tr>
+    </thead>
+    <tbody>
+    <th:block th:each="survey : ${surveyList}">
+      <tr>
+        <td th:text="${survey.surveyID}"></td>
+        <td th:text="${survey.surveyName}"></td>
+        <td>
+          <a th:href="@{editSurvey/{id}(id=${survey.getSurveyID()})}">Edit</a>
+          <a th:href="@{survey/{id}/addTextQuestion(id=${survey.getSurveyID()})}">Add Text Question</a>
+          <a th:href="@{survey/{id}/addRangeQuestion(id=${survey.getSurveyID()})}">Add Range Question</a>
+          <a th:href="@{survey/{id}/addChoiceQuestion(id=${survey.getSurveyID()})}">Add Choice Question</a>
+          <a th:href="@{survey/{id}/viewQuestions(id=${survey.getSurveyID()})}">View Questions</a>
+        </td>
+      </tr>
+    </th:block>
+    </tbody>
+  </table>
+
+  <h1>Commands</h1>
+  <a href="/createSurvey" id="createSurveyLink">Add a New Survey</a>
+</body>
+</html>
