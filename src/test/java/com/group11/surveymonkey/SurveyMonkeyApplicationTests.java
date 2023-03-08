@@ -30,20 +30,20 @@ class SurveyMonkeyApplicationTests {
         Assertions.assertEquals(response.getStatusCode(), HttpStatus.OK);
     }
 
-    /*@Test
+    @Test
     void getPlainSurvey(){
 
-        Survey survey = restTemplate.getForObject("http://localhost:"+port+"/surveyHome", Survey.class);
+        Survey survey = restTemplate.getForObject("http://localhost:"+port+"/survey/1", Survey.class);
         Assertions.assertNotNull(survey.getSurveyName());
         Assertions.assertEquals(1,survey.getSurveyID());
     }
     @Test
     void addSurveyTest(){
         HttpEntity<Survey> request = new HttpEntity<>(new Survey("First Survey"));
-        Survey survey = restTemplate.postForObject("http://localhost:"+port+"/saveSurvey",request, Survey.class);
+        Survey survey = restTemplate.postForObject("http://localhost:"+port+"/survey",request, Survey.class);
         Assertions.assertNotNull(survey);
         Assertions.assertEquals("First Survey",survey.getSurveyName());
-    }*/
+    }
 
     @Test
     void getTextQnATest(){
