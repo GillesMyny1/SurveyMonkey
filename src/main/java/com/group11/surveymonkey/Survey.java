@@ -6,7 +6,7 @@ import java.util.*;
 @Entity
 public class Survey {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id = null;
     private String surveyName;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "textSurvey")
