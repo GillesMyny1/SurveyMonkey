@@ -24,16 +24,27 @@ public class SurveyMonkeyApplication {
 
             repositorySurvey.save(s);
 
+            /* */
+//            insertSurvey(repositorySurvey);
+//            System.out.println(repositorySurvey.findAll());
+            /* */
+
             log.info("Survey found with findAll()");
             log.info("---------------------------------");
             Iterable<Survey> surveys = repositorySurvey.findAll();
             log.info("Print all TextQnA found in the Survey:");
             for(Survey survey : surveys) {
                 for(TextQnA textQnA : survey.getTextList()) {
-                    log.info("ID: " + textQnA.getId() + "\tQuestion: " + textQnA.getQuestionText());
+                    log.info("Survey ID: " + survey.getSurveyID());
+                    log.info("Question ID: " + textQnA.getId() + "\tQuestion: " + textQnA.getQuestionText());
                 }
             }
             log.info("");
         };
     }
+
+//    private void insertSurvey(SurveyRepository surveyRepository) {
+//        surveyRepository.save(new Survey("First"));
+//        surveyRepository.save(new Survey("Second"));
+//    }
 }
