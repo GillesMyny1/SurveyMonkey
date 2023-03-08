@@ -1,5 +1,7 @@
 package com.group11.surveymonkey;
 
+import com.group11.surveymonkey.entity.ChoiceQnA;
+import com.group11.surveymonkey.entity.RangeQnA;
 import com.group11.surveymonkey.entity.Survey;
 import com.group11.surveymonkey.entity.TextQnA;
 import com.group11.surveymonkey.repository.SurveyRepository;
@@ -24,6 +26,8 @@ public class SurveyMonkeyApplication {
         return (args) -> {
             Survey s = new Survey("Test Survey");
             s.addTextQnA(new TextQnA("Does this work?"));
+            s.addChoiceQnA(new ChoiceQnA("Second Question?"));
+            s.addRangeQnA(new RangeQnA("Third Question?"));
 
             repositorySurvey.save(s);
 

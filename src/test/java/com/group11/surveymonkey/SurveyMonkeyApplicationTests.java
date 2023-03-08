@@ -26,27 +26,27 @@ class SurveyMonkeyApplicationTests {
 
     @Test
     void getSurveyJSON(){
-        ResponseEntity<String> response = this.restTemplate.getForEntity("http://localhost:"+port+"/survey", String.class);
+        ResponseEntity<String> response = restTemplate.getForEntity("http://localhost:"+port+"/createSurvey", String.class);
         Assertions.assertEquals(response.getStatusCode(), HttpStatus.OK);
     }
     @Test
     void getPlainSurvey(){
-        Survey survey = restTemplate.getForObject("http://localhost:"+port+"/survey", Survey.class);
+        Survey survey = restTemplate.getForObject("http://localhost:"+port+"/survey/1", Survey.class);
         Assertions.assertNotNull(survey.getSurveyName());
         Assertions.assertEquals(survey.getSurveyID(), null);
     }
     @Test
     void addSurveyTest(){
         HttpEntity<Survey> request = new HttpEntity<>(new Survey("First Survey"));
-        Survey survey = restTemplate.postForObject("http://localhost:"+port+"/survey",request, Survey.class);
+        Survey survey = restTemplate.postForObject("http://localhost:"+port+"/createSurvey",request, Survey.class);
         Assertions.assertNotNull(survey);
-        Assertions.assertEquals(survey.getSurveyName(),"First Survey");
+        Assertions.assertEquals("First Survey",survey.getSurveyName());
     }
     @Test
     void getTextQnATest(){
-        TextQnA question = restTemplate.getForObject("http://localhost:"+port+"/textQnA", TextQnA.class);
+        TextQnA question = restTemplate.getForObject("http://localhost:"+port+"/textQnA/1", TextQnA.class);
         Assertions.assertNotNull(question.getQuestionText());
-        Assertions.assertEquals(question.getId(), null);
+        Assertions.assertEquals(1,question.getId());
     }
     @Test
     void addTextQnATest(){
@@ -59,27 +59,27 @@ class SurveyMonkeyApplicationTests {
     void getChoiceQnATest(){
         ChoiceQnA question = restTemplate.getForObject("http://localhost:"+port+"/choiceQnA", ChoiceQnA.class);
         Assertions.assertNotNull(question.getQuestionText());
-        Assertions.assertEquals(question.getId(), null);
+        Assertions.assertEquals(1,question.getId() );
     }
     @Test
     void addChoiceQnATest(){
         HttpEntity<ChoiceQnA> request = new HttpEntity<>(new ChoiceQnA("Question 2?"));
         ChoiceQnA question = restTemplate.postForObject("http://localhost:"+port+"/choiceQnA",request, ChoiceQnA.class);
         Assertions.assertNotNull(question);
-        Assertions.assertEquals(question.getQuestionText(),"Question 2?");
+        Assertions.assertEquals("Question 2?", question.getQuestionText());
     }
     @Test
     void getRangeQnATest(){
-        RangeQnA question = restTemplate.getForObject("http://localhost:"+port+"/rangeQnA", RangeQnA.class);
+        RangeQnA question = restTemplate.getForObject("http://localhost:"+port+"/rangeQnA/1", RangeQnA.class);
         Assertions.assertNotNull(question.getQuestionText());
-        Assertions.assertEquals(question.getId(), null);
+        Assertions.assertEquals(1,question.getId());
     }
     @Test
     void addRangeQnATest(){
         HttpEntity<RangeQnA> request = new HttpEntity<>(new RangeQnA("Question 3?"));
         RangeQnA question = restTemplate.postForObject("http://localhost:"+port+"/rangeQnA",request, RangeQnA.class);
         Assertions.assertNotNull(question);
-        Assertions.assertEquals(question.getQuestionText(),"Question 3?");
+        Assertions.assertEquals("Question 3?",question.getQuestionText());
     }
 
 }
