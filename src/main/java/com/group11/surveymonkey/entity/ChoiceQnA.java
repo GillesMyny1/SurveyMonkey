@@ -15,7 +15,7 @@ public class ChoiceQnA {
 
     private static List<String> choices;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "choiceQnA")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<ChoiceAnswer> choiceAnswers;
 
     public ChoiceQnA() {

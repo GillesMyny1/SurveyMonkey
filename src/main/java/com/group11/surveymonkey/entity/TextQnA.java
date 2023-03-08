@@ -12,7 +12,7 @@ public class TextQnA {
     private String questionText;
 
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "textQnA")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<TextAnswer> textAnswers;
 
     public TextQnA() {
