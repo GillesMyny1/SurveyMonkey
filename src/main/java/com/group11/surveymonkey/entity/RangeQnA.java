@@ -17,8 +17,6 @@ public class RangeQnA {
 
     private Integer step;
 
-    @ManyToOne
-    private Survey rangeSurvey;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "rangeQnA")
     private List<RangeAnswer> rangeAnswers;
@@ -76,14 +74,6 @@ public class RangeQnA {
 
     public void setStep(Integer step) {
         this.step = step;
-    }
-
-    public Survey getSurvey() {
-        return this.rangeSurvey;
-    }
-
-    public void setSurvey(Survey newSurvey) {
-        this.rangeSurvey = newSurvey;
     }
 
     public List<RangeAnswer> getRangeAnswers() {

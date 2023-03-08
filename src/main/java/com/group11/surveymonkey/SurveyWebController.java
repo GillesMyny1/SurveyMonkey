@@ -51,7 +51,6 @@ public class SurveyWebController {
     public String textQnAForm(@PathVariable("id") Integer id, Model model) {
         Survey survey = surveyRepository.findById(id).get();
         TextQnA textQnA = new TextQnA();
-        textQnA.setSurvey(survey);
         model.addAttribute("survey", survey);
         model.addAttribute("surveyId", id);
         model.addAttribute("textQnA", textQnA);
@@ -61,7 +60,6 @@ public class SurveyWebController {
     @PostMapping("/saveTextQnA")
     public String textQnASubmit(TextQnA textQnA, @RequestParam("surveyId") Integer surveyId) {
         Survey survey = surveyRepository.findById(surveyId).get();
-        textQnA.setSurvey(survey);
         survey.addTextQnA(textQnA);
         textQnARepository.save(textQnA);
         surveyRepository.save(survey);

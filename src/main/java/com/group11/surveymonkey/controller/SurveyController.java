@@ -2,6 +2,7 @@ package com.group11.surveymonkey.controller;
 
 import java.util.*;
 
+import com.group11.surveymonkey.entity.TextQnA;
 import com.group11.surveymonkey.service.SurveyService;
 import com.group11.surveymonkey.entity.Survey;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +14,8 @@ public class SurveyController {
     private SurveyService surveyService;
 
     @PostMapping("/survey")
-    public Survey saveSurvey(){
-        return surveyService.saveSurvey(new Survey());
+    public Survey saveSurvey(@RequestBody Survey survey){
+        return surveyService.saveSurvey(survey);
     }
 
     @GetMapping("/survey")
