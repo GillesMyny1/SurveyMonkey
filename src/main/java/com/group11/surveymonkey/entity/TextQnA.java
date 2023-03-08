@@ -11,8 +11,6 @@ public class TextQnA {
 
     private String questionText;
 
-    @ManyToOne
-    private Survey textSurvey;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "textQnA")
     private List<TextAnswer> textAnswers;
@@ -48,13 +46,6 @@ public class TextQnA {
         this.questionText = newQuestionText;
     }
 
-    public Survey getSurvey() {
-        return this.textSurvey;
-    }
-
-    public void setSurvey(Survey newSurvey) {
-        this.textSurvey = newSurvey;
-    }
 
     public List<TextAnswer> getTextAnswers() {
         return this.textAnswers;
