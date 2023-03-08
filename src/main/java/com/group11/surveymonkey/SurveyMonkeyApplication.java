@@ -25,9 +25,9 @@ public class SurveyMonkeyApplication {
     public CommandLineRunner demo(SurveyRepository repositorySurvey) {
         return (args) -> {
             Survey s = new Survey("Test Survey");
-            s.addTextQnA(new TextQnA("Does this work?"));
-            s.addChoiceQnA(new ChoiceQnA("Second Question"));
-            s.addRangeQnA(new RangeQnA("Third Question"));
+            s.addTextQnA(new TextQnA("Is this a text question?"));
+            s.addChoiceQnA(new ChoiceQnA("Is this a range question?"));
+            s.addRangeQnA(new RangeQnA("Is this a choice question?"));
 
             repositorySurvey.save(s);
 
@@ -38,6 +38,8 @@ public class SurveyMonkeyApplication {
             for(Survey survey : surveys) {
                 for(TextQnA textQnA : survey.getTextList()) {
                     log.info("ID: " + textQnA.getId() + "\tQuestion: " + textQnA.getQuestionText());
+                    log.info("Survey ID: " + survey.getSurveyID());
+                    log.info("Question ID: " + textQnA.getId() + "\tQuestion: " + textQnA.getQuestionText());
                 }
             }
             log.info("");
