@@ -31,14 +31,14 @@ class SurveyMonkeyApplicationTests {
     }
     @Test
     void getPlainSurvey(){
-        Survey survey = restTemplate.getForObject("http://localhost:"+port+"/survey/1", Survey.class);
+        Survey survey = restTemplate.getForObject("http://localhost:"+port+"/surveyHome", Survey.class);
         Assertions.assertNotNull(survey.getSurveyName());
-        Assertions.assertEquals(survey.getSurveyID(), null);
+        Assertions.assertEquals(1,survey.getSurveyID());
     }
     @Test
     void addSurveyTest(){
         HttpEntity<Survey> request = new HttpEntity<>(new Survey("First Survey"));
-        Survey survey = restTemplate.postForObject("http://localhost:"+port+"/createSurvey",request, Survey.class);
+        Survey survey = restTemplate.postForObject("http://localhost:"+port+"/saveSurvey",request, Survey.class);
         Assertions.assertNotNull(survey);
         Assertions.assertEquals("First Survey",survey.getSurveyName());
     }
@@ -57,7 +57,7 @@ class SurveyMonkeyApplicationTests {
     }
     @Test
     void getChoiceQnATest(){
-        ChoiceQnA question = restTemplate.getForObject("http://localhost:"+port+"/choiceQnA", ChoiceQnA.class);
+        ChoiceQnA question = restTemplate.getForObject("http://localhost:"+port+"/choiceQnA/1", ChoiceQnA.class);
         Assertions.assertNotNull(question.getQuestionText());
         Assertions.assertEquals(1,question.getId() );
     }

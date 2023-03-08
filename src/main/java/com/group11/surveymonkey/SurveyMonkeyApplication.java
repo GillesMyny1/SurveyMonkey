@@ -26,8 +26,8 @@ public class SurveyMonkeyApplication {
         return (args) -> {
             Survey s = new Survey("Test Survey");
             s.addTextQnA(new TextQnA("Does this work?"));
-            s.addChoiceQnA(new ChoiceQnA("Second Question?"));
-            s.addRangeQnA(new RangeQnA("Third Question?"));
+            s.addChoiceQnA(new ChoiceQnA("Second Question"));
+            s.addRangeQnA(new RangeQnA("Third Question"));
 
             repositorySurvey.save(s);
 
