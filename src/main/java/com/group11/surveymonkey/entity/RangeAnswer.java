@@ -1,6 +1,7 @@
 package com.group11.surveymonkey.entity;
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class RangeAnswer {
@@ -10,6 +11,7 @@ public class RangeAnswer {
 
     private Integer answer;
 
+    @JsonIgnore
     @ManyToOne
     public RangeQnA rangeQnA;
 

@@ -8,7 +8,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.w3c.dom.ranges.Range;
 
 @SpringBootApplication
 public class SurveyMonkeyApplication {
@@ -24,7 +23,7 @@ public class SurveyMonkeyApplication {
                                   ChoiceQnARepository choiceQnARepository, TextAnswerRepository textAnswerRepository, RangeAnswerRepository
                                   rangeAnswerRepository, ChoiceAnswerRepository choiceAnswerRepository) {
         return (args) -> {
-            Survey s = new Survey("Default Survey");
+            Survey s = new Survey("Default App Survey");
 
             TextQnA tq = new TextQnA("Is this a text question?");
             RangeQnA rq = new RangeQnA("How are you feeling?");
@@ -33,7 +32,7 @@ public class SurveyMonkeyApplication {
             rq.setStep(1);
             ChoiceQnA cq = new ChoiceQnA("Which suits you best?");
 
-            TextAnswer ta = new TextAnswer("Yes it does.");
+            TextAnswer ta = new TextAnswer("Yes it is.");
             tq.addTextAnswer(ta);
             ta.setTextQnA(tq);
             RangeAnswer ra = new RangeAnswer(5);
@@ -45,12 +44,6 @@ public class SurveyMonkeyApplication {
             s.addRangeQnA(rq);
             s.addChoiceQnA(cq);
 
-            textAnswerRepository.save(ta);
-            rangeAnswerRepository.save(ra);
-            // TODO: Frank, save ChoiceAnswer as above
-            textQnARepository.save(tq);
-            rangeQnARepository.save(rq);
-            choiceQnARepository.save(cq);
             repositorySurvey.save(s);
 
             log.info("Survey found with findAll()");
