@@ -11,7 +11,5 @@ public interface SurveyService {
 
     Optional<Survey> fetchSurveyById(Integer surveyId);
 
-    /*
-    void addQuestion(Integer questionId, Integer surveyId, Integer questionType);
-     */
+    Survey updateSurvey(Integer surveyId, String newSurveyName);
 }

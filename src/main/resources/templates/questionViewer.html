@@ -5,7 +5,8 @@
     <title>SYSC 4806 Group 11 - Survey Monkey</title>
 </head>
 <body>
-    <h1 th:text="'Survey:  ' + ${survey.getSurveyName()} + ' Questions'"></h1>    <h2>Text Questions</h2>
+    <h1 th:text="'Survey:  ' + ${survey.getSurveyName()} + ' Questions'"></h1>
+    <h2>Text Questions</h2>
     <ul>
         <li th:each="textQnA : ${survey.textList}">
             <div>

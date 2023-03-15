@@ -51,6 +51,21 @@ public class SurveyWebController {
         return "redirect:/surveyHome";
     }
 
+    @GetMapping("/editSurveyInfo/{id}")
+    public String editSurveyForm(@PathVariable("id") Integer surveyId, Model model) {
+        Survey survey = surveyRepository.findById(surveyId).get();
+        model.addAttribute("survey", survey);
+        return "editSurvey";
+    }
+
+    @PostMapping("/saveUpdatedSurvey")
+    public String surveyInfoUpdate(@RequestParam("surveyId") Integer surveyId, @RequestParam String newSurveyName) {
+        Survey survey = surveyRepository.findById(surveyId).get();
+        survey.setSurveyName(newSurveyName);
+        surveyRepository.save(survey);
+        return "redirect:/surveyHome";
+    }
+
     @GetMapping("/survey/{id}/addTextQuestion")
     public String textQnAForm(@PathVariable("id") Integer id, Model model) {
         Survey survey = surveyRepository.findById(id).get();

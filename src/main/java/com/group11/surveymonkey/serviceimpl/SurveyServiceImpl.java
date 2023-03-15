@@ -49,6 +49,13 @@ public class SurveyServiceImpl implements SurveyService {
     Put Operations
      */
 
+    @Override
+    public Survey updateSurvey(Integer surveyId, String newSurveyName) {
+        Survey survey = surveyRepository.findById(surveyId).get();
+        survey.setSurveyName(newSurveyName);
+        return surveyRepository.save(survey);
+    }
+
     /*
     Delete Operations
      */
