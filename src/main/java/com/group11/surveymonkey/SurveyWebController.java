@@ -23,11 +23,15 @@ public class SurveyWebController {
 
     @Autowired
     private TextQnARepository textQnARepository;
-    private final TextAnswerRepository textAnswerRepository;
 
-    public SurveyWebController(TextAnswerRepository textAnswerRepository) {
-        this.textAnswerRepository = textAnswerRepository;
-    }
+    @Autowired
+    private TextAnswerRepository textAnswerRepository;
+
+    @Autowired
+    private RangeAnswerRepository rangeAnswerRepository;
+
+    @Autowired
+    private ChoiceAnswerRepository choiceAnswerRepository;
 
     @RequestMapping("/surveyHome")
     public String displaySurvey(Model model) {
@@ -69,14 +73,19 @@ public class SurveyWebController {
     @GetMapping("/survey/{id}/addRangeQuestion")
     public String rangeQnAForm(@PathVariable("id") Integer id, Model model) {
         Survey survey = surveyRepository.findById(id).get();
+        RangeQnA rangeQnA = new RangeQnA();
         model.addAttribute("survey", survey);
-        model.addAttribute("rangeQnA", new RangeQnA());
+        model.addAttribute("surveyId", id);
+        model.addAttribute("rangeQnA", rangeQnA);
         return "rangeQnACreate";
     }
 
     @PostMapping("/saveRangeQnA")
-    public String rangeQnASubmit(RangeQnA rangeQnA) {
+    public String rangeQnASubmit(RangeQnA rangeQnA, @RequestParam("surveyId") Integer surveyId) {
+        Survey survey = surveyRepository.findById(surveyId).get();
+        survey.addRangeQnA(rangeQnA);
         rangeQnARepository.save(rangeQnA);
+        surveyRepository.save(survey);
         return "redirect:/surveyHome";
     }
 
@@ -134,5 +143,40 @@ public class SurveyWebController {
         model.addAttribute("textQnA", textQnA);
         model.addAttribute("answers", answers);
         return "textAnswerViewer";
+    }
+
+    @GetMapping("/answerRangeQnA/{surveyId}/{QnAId}")
+    public String addRangeAnswerToRangeQnA(@PathVariable("surveyId") Integer surveyId, @PathVariable("QnAId") Integer QnAId, Model model) {
+        Survey survey = surveyRepository.findById(surveyId).get();
+        RangeQnA rangeQnA = rangeQnARepository.findById(QnAId).get();
+        RangeAnswer rangeAnswer = new RangeAnswer();
+        rangeAnswer.setRangeQnA(rangeQnA);
+        model.addAttribute("survey", survey);
+        model.addAttribute("surveyId", surveyId);
+        model.addAttribute("rangeQnA", rangeQnA);
+        model.addAttribute("rangeQnAId", QnAId);
+        model.addAttribute("rangeAnswer", rangeAnswer);
+        return "rangeAnswerCreate";
+    }
+
+    @PostMapping("/saveRangeAnswer")
+    public String rangeAnswerSubmit(RangeAnswer newRangeAnswer, @RequestParam("surveyId") Integer surveyId, @RequestParam("rangeQnAId") Integer rangeQnAId) {
+        Survey survey = surveyRepository.findById(surveyId).get();
+        RangeQnA rangeQnA = rangeQnARepository.findById(rangeQnAId).get();
+        newRangeAnswer.setRangeQnA(rangeQnA);
+        rangeQnA.addRangeAnswer(newRangeAnswer);
+        rangeAnswerRepository.save(newRangeAnswer);
+        rangeQnARepository.save(rangeQnA);
+        surveyRepository.save(survey);
+        return "redirect:/surveyHome";
+    }
+
+    @GetMapping("/rangeQnA/{QnAId}/viewAnswers")
+    public String viewRangeQnAAnswers(@PathVariable("QnAId") Integer QnAId, Model model) {
+        RangeQnA rangeQnA = rangeQnARepository.findById(QnAId).get();
+        List<RangeAnswer> answers = rangeQnA.getRangeAnswers();
+        model.addAttribute("rangeQnA", rangeQnA);
+        model.addAttribute("answers", answers);
+        return "rangeAnswerViewer";
     }
 }
