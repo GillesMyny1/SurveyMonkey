@@ -31,7 +31,7 @@
         <td th:text="${survey.surveyID}"></td>
         <td th:text="${survey.surveyName}"></td>
         <td>
-          <a th:href="@{editSurvey/{id}(id=${survey.getSurveyID()})}">Edit</a>
+          <a th:href="@{editSurveyInfo/{id}(id=${survey.getSurveyID()})}">Edit</a>
           <a th:href="@{survey/{id}/addTextQuestion(id=${survey.getSurveyID()})}">Add Text Question</a>
           <a th:href="@{survey/{id}/addRangeQuestion(id=${survey.getSurveyID()})}">Add Range Question</a>
           <a th:href="@{survey/{id}/addChoiceQuestion(id=${survey.getSurveyID()})}">Add Choice Question</a>

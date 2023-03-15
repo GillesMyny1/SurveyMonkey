@@ -23,8 +23,13 @@ public class SurveyController {
         return surveyService.fetchAllSurvey();
     }
 
-    @GetMapping({"/survey/{surveyId}"})
+    @GetMapping("/survey/{surveyId}")
     public Optional<Survey> getSurvey(@PathVariable("surveyId") Integer surveyId) {
         return surveyService.fetchSurveyById(surveyId);
+    }
+
+    @PutMapping("/survey/{surveyId}/{newSurveyName}")
+    public Survey updateSurvey(@PathVariable("surveyId") Integer surveyId, @PathVariable("newSurveyName") String newSurveyName) {
+        return surveyService.updateSurvey(surveyId, newSurveyName);
     }
 }

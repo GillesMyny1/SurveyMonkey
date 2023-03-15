@@ -1,6 +1,7 @@
 package com.group11.surveymonkey.serviceimpl;
 
 import com.group11.surveymonkey.entity.TextAnswer;
+import com.group11.surveymonkey.repository.SurveyRepository;
 import com.group11.surveymonkey.repository.TextAnswerRepository;
 import com.group11.surveymonkey.service.TextAnswerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,8 @@ import java.util.*;
 public class TextAnswerServiceImpl implements TextAnswerService {
     @Autowired
     private TextAnswerRepository textAnswerRepository;
+    @Autowired
+    private SurveyRepository surveyRepository;
 
     /*
     Post Operations
