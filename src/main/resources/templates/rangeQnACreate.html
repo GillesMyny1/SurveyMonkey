@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1 th:text="'Add Range Question to ' + ${survey.getSurveyName()}"></h1>
-<form method="post" th:object="${rangeQnA}" th:action="@{/saveRangeQnA}">
+<form method="post" th:object="${rangeQnA}" th:action="@{/saveRangeQnA(surveyId=${survey.surveyID})}">
   <label for="questionText">The Question:</label>
   <input type="text" id="questionText" th:field="*{questionText}">
   <label for="rangeMin">Minimum Integer in Range:</label>

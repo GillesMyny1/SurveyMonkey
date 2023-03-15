@@ -17,7 +17,6 @@ public class RangeQnA {
 
     private Integer step;
 
-
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<RangeAnswer> rangeAnswers;
 

@@ -32,17 +32,16 @@ class SurveyMonkeyApplicationTests {
 
     @Test
     void getPlainSurvey(){
-
         Survey survey = restTemplate.getForObject("http://localhost:"+port+"/survey/1", Survey.class);
         Assertions.assertNotNull(survey.getSurveyName());
         Assertions.assertEquals(1,survey.getSurveyID());
     }
     @Test
     void addSurveyTest(){
-        HttpEntity<Survey> request = new HttpEntity<>(new Survey("First Survey"));
+        HttpEntity<Survey> request = new HttpEntity<>(new Survey("Test App Survey"));
         Survey survey = restTemplate.postForObject("http://localhost:"+port+"/survey",request, Survey.class);
         Assertions.assertNotNull(survey);
-        Assertions.assertEquals("First Survey",survey.getSurveyName());
+        Assertions.assertEquals("Test App Survey",survey.getSurveyName());
     }
 
     @Test

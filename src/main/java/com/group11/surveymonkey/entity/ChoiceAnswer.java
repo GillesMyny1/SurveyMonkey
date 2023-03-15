@@ -1,5 +1,6 @@
 package com.group11.surveymonkey.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -10,6 +11,7 @@ public class ChoiceAnswer {
 
     private String answer;
 
+    @JsonIgnore
     @ManyToOne
     public ChoiceQnA choiceQnA;
 
