@@ -7,11 +7,7 @@
 <body>
 <h1 th:text="'Add Answer to Choice Question: ' + ${choiceQnA.getQuestionText()} + ' in Survey: ' + ${survey.getSurveyName()}"></h1>
 <form method="post" th:object="${choiceAnswer}" th:action="@{/saveChoiceAnswer(surveyId=${survey.surveyID}, choiceQnAId=${choiceQnA.id})}">
-  <label for="questionChoice">The Answer:</label>
-  <input type="choice" id="questionChoice" th:field="*{answer}">
-  <textarea readonly id="choiceAnswer"></textarea>
 
-  <button type="submit" id="createChoiceAnswerButton">Add</button>
 </form>
 </body>
 </html>
