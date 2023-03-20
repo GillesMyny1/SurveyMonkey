@@ -6,8 +6,15 @@
 </head>
 <body>
 <h1 th:text="'Add Answer to Choice Question: ' + ${choiceQnA.getQuestionText()} + ' in Survey: ' + ${survey.getSurveyName()}"></h1>
-<form method="post" th:object="${choiceAnswer}" th:action="@{/saveChoiceAnswer(surveyId=${survey.surveyID}, choiceQnAId=${choiceQnA.id})}">
-
+<form th:object="${choiceAnswer}" th:action="@{/saveChoiceAnswer(surveyId=${survey.surveyID}, choiceQnAId=${choiceQnA.id})}" method="post">
+  <div th:each="choice : ${choiceQnA.choices}">
+    <label>
+      <input type="radio" th:field="*{answer}" th:value="${choice}" th:text="${choice}"/>
+      <span th:text="${choice}"></span>
+    </label>
+  </div>
+  <button type="submit">Submit</button>
 </form>
+
 </body>
 </html>
