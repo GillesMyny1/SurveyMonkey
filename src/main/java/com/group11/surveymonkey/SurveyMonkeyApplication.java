@@ -34,7 +34,7 @@ public class SurveyMonkeyApplication {
             rq.setMaximum(10);
             rq.setStep(1);
             ChoiceQnA cq = new ChoiceQnA("Which suits you best?");
-            ArrayList<String> choices = new ArrayList<>();
+            List<String> choices = new ArrayList<>();
             choices.add("Red");
             choices.add("Blue");
             choices.add("Yellow");
@@ -79,7 +79,6 @@ public class SurveyMonkeyApplication {
                     log.info("Choice Question ID: " + choiceQnA.getId() + "\tQuestion: " + choiceQnA.getQuestionText());
                     for(ChoiceAnswer choiceAnswer : choiceQnA.getChoiceAnswers()){
                         log.info("Range Answer ID: "+ choiceAnswer.getId() + "\tAnswer: " + choiceAnswer.getAnswer());
-                        log.info(choiceQnA.getChoices().get(0));
                     }
                 }
             }

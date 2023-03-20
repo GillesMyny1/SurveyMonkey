@@ -10,7 +10,7 @@
   <div th:each="choice : ${choiceQnA.choices}">
     <label>
 
-      <input type="radio" th:field="*{answer}" th:value="${choice}" th:text="${choice}"/>
+      <input type="radio" th:field="*{answer}" th:value="${choice}"/>
       <span th:text="${choice}"></span>
     </label>
   </div>
