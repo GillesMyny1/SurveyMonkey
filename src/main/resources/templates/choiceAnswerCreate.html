@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>SYSC 4806 Group 11 - Survey Monkey</title>
+</head>
+<body>
+<h1 th:text="'Add Answer to Choice Question: ' + ${choiceQnA.getQuestionText()} + ' in Survey: ' + ${survey.getSurveyName()}"></h1>
+<form method="post" th:object="${choiceAnswer}" th:action="@{/saveChoiceAnswer(surveyId=${survey.surveyID}, choiceQnAId=${choiceQnA.id})}" >
+  <div th:each="choice : ${choiceQnA.choices}">
+    <label>
+
+      <input type="radio" th:field="*{answer}" th:value="${choice}"/>
+      <span th:text="${choice}"></span>
+    </label>
+  </div>
+  <button type="submit">Submit</button>
+</form>
+
+</body>
+</html>

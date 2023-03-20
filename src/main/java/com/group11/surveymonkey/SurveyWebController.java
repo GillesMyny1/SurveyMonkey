@@ -107,14 +107,19 @@ public class SurveyWebController {
     @GetMapping("/survey/{id}/addChoiceQuestion")
     public String choiceQnAForm(@PathVariable("id") Integer id, Model model) {
         Survey survey = surveyRepository.findById(id).get();
+        ChoiceQnA choiceQnA = new ChoiceQnA();
         model.addAttribute("survey", survey);
-        model.addAttribute("choiceQnA", new ChoiceQnA());
+        model.addAttribute("surveyId", id);
+        model.addAttribute("choiceQnA", choiceQnA);
         return "choiceQnACreate";
     }
 
     @PostMapping("/saveChoiceQnA")
-    public String choiceQnASubmit(ChoiceQnA choiceQnA) {
+    public String choiceQnASubmit(ChoiceQnA choiceQnA, @RequestParam("surveyId") Integer surveyId) {
+        Survey survey = surveyRepository.findById(surveyId).get();
+        survey.addChoiceQnA(choiceQnA);
         choiceQnARepository.save(choiceQnA);
+        surveyRepository.save(survey);
         return "redirect:/surveyHome";
     }
 
@@ -193,5 +198,40 @@ public class SurveyWebController {
         model.addAttribute("rangeQnA", rangeQnA);
         model.addAttribute("answers", answers);
         return "rangeAnswerViewer";
+    }
+
+    @GetMapping("/answerChoiceQnA/{surveyId}/{QnAId}")
+    public String addChoiceAnswerToChoiceQnA(@PathVariable("surveyId") Integer surveyId, @PathVariable("QnAId") Integer QnAId, Model model) {
+        Survey survey = surveyRepository.findById(surveyId).get();
+        ChoiceQnA choiceQnA = choiceQnARepository.findById(QnAId).get();
+        ChoiceAnswer choiceAnswer = new ChoiceAnswer();
+        choiceAnswer.setChoiceQnA(choiceQnA);
+        model.addAttribute("survey", survey);
+        model.addAttribute("surveyId", surveyId);
+        model.addAttribute("choiceQnA", choiceQnA);
+        model.addAttribute("choiceQnAId", QnAId);
+        model.addAttribute("choiceAnswer", choiceAnswer);
+        return "choiceAnswerCreate";
+    }
+
+    @PostMapping("/saveChoiceAnswer")
+    public String choiceAnswerSubmit(ChoiceAnswer newChoiceAnswer, @RequestParam("surveyId") Integer surveyId, @RequestParam("choiceQnAId") Integer choiceQnAId) {
+        Survey survey = surveyRepository.findById(surveyId).get();
+        ChoiceQnA choiceQnA = choiceQnARepository.findById(choiceQnAId).get();
+        newChoiceAnswer.setChoiceQnA(choiceQnA);
+        choiceQnA.addChoiceAnswer(newChoiceAnswer);
+        choiceAnswerRepository.save(newChoiceAnswer);
+        choiceQnARepository.save(choiceQnA);
+        surveyRepository.save(survey);
+        return "redirect:/surveyHome";
+    }
+
+    @GetMapping("/choiceQnA/{QnAId}/viewAnswers")
+    public String viewChoiceQnAAnswers(@PathVariable("QnAId") Integer QnAId, Model model) {
+        ChoiceQnA choiceQnA = choiceQnARepository.findById(QnAId).get();
+        List<ChoiceAnswer> answers = choiceQnA.getChoiceAnswers();
+        model.addAttribute("choiceQnA", choiceQnA);
+        model.addAttribute("answers", answers);
+        return "choiceAnswerViewer";
     }
 }

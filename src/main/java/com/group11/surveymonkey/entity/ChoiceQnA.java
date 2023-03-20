@@ -13,7 +13,8 @@ public class ChoiceQnA {
 
     private String questionText;
 
-    private static List<String> choices;
+    @ElementCollection
+    private List<String> choices;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<ChoiceAnswer> choiceAnswers;

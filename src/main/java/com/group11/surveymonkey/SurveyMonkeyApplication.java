@@ -9,6 +9,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @SpringBootApplication
 public class SurveyMonkeyApplication {
 
@@ -31,6 +34,11 @@ public class SurveyMonkeyApplication {
             rq.setMaximum(10);
             rq.setStep(1);
             ChoiceQnA cq = new ChoiceQnA("Which suits you best?");
+            List<String> choices = new ArrayList<>();
+            choices.add("Red");
+            choices.add("Blue");
+            choices.add("Yellow");
+            cq.setChoices(choices);
 
             TextAnswer ta = new TextAnswer("Yes it is.");
             tq.addTextAnswer(ta);
@@ -38,7 +46,9 @@ public class SurveyMonkeyApplication {
             RangeAnswer ra = new RangeAnswer(5);
             rq.addRangeAnswer(ra);
             ra.setRangeQnA(rq);
-            // TODO: Frank, add ChoiceAnswer material as above
+            ChoiceAnswer ca = new ChoiceAnswer("Red");
+            cq.addChoiceAnswer(ca);
+            ca.setChoiceQnA(cq);
 
             s.addTextQnA(tq);
             s.addRangeQnA(rq);
@@ -67,7 +77,9 @@ public class SurveyMonkeyApplication {
                 for(ChoiceQnA choiceQnA : survey.getChoiceList()) {
                     log.info("Survey ID: " + survey.getSurveyID());
                     log.info("Choice Question ID: " + choiceQnA.getId() + "\tQuestion: " + choiceQnA.getQuestionText());
-                    // TODO: Frank, print the ChoiceAnswer as above
+                    for(ChoiceAnswer choiceAnswer : choiceQnA.getChoiceAnswers()){
+                        log.info("Range Answer ID: "+ choiceAnswer.getId() + "\tAnswer: " + choiceAnswer.getAnswer());
+                    }
                 }
             }
             log.info("");

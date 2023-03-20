@@ -31,7 +31,8 @@
         <li th:each="choiceQnA : ${survey.choiceList}">
             <div>
                 <span th:text="${choiceQnA.questionText}" />
-                <a th:href="@{/answerChoiceQnA/{id}(id=${choiceQnA.id})}">Answer this question</a>
+                <a th:href="@{/answerChoiceQnA/{surveyId}/{QnAId}(surveyId=${survey.getSurveyID()}, QnAId=${choiceQnA.id})}">Answer this question</a>
+                <a th:href="@{/choiceQnA/{QnAId}/viewAnswers(QnAId=${choiceQnA.id})}">View answers to this question</a>
             </div>
         </li>
     </ul>
