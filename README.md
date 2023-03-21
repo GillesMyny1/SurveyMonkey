@@ -35,6 +35,26 @@ Razem Shahin - 101128970
 **Weekly Scrum Issue [Link][i4] (8/3/2023)**
 
 ## Milestone 2: Alpha Release
+**Issues Added to Backlog**
+- [Choice Answer Viewer][i39]
+
+**Issues Added to In Progress**
+- none in progress, all issues completed in time frame
+
+**Issues Added to Completed**
+- [Expand on QnA & Answer functionality][i9]
+- [Create Unit tests][i28]
+- [Complete RangeQnA and RangeAnswer functionality][i30]
+- [Add feature to edit the Survey name on the home page][i31]
+- [Range Question and Answer Feature][p32]
+- [Added Edit Survey Info feature][p34]
+- [Choice Question and Answer Feature][i35]
+- [Choice Question and Answer Unit Tests][i36]
+- [Design UML Class Diagrams][i37]
+- [Design ER diagrams][i41]
+
+**Weekly Scrum Issue [Link][i33] (15/3/2023)**  
+**Weekly Scrum Issue [Link][i40] (22/3/2023)**
 
 ## Milestone 3: Final Demo
 
@@ -63,3 +83,15 @@ Razem Shahin - 101128970
 [i19]: https://github.com/GillesMyny1/SurveyMonkey/issues/19
 [i20]: https://github.com/GillesMyny1/SurveyMonkey/issues/20
 [i23]: https://github.com/GillesMyny1/SurveyMonkey/issues/23
+[i28]: https://github.com/GillesMyny1/SurveyMonkey/issues/28
+[i30]: https://github.com/GillesMyny1/SurveyMonkey/issues/30
+[i31]: https://github.com/GillesMyny1/SurveyMonkey/issues/31
+[p32]: https://github.com/GillesMyny1/SurveyMonkey/pull/32
+[i33]: https://github.com/GillesMyny1/SurveyMonkey/issues/33
+[p34]: https://github.com/GillesMyny1/SurveyMonkey/pull/34
+[i35]: https://github.com/GillesMyny1/SurveyMonkey/issues/35
+[i36]: https://github.com/GillesMyny1/SurveyMonkey/issues/36
+[i37]: https://github.com/GillesMyny1/SurveyMonkey/issues/37
+[i39]: https://github.com/GillesMyny1/SurveyMonkey/issues/39
+[i40]: https://github.com/GillesMyny1/SurveyMonkey/issues/40
+[i41]: https://github.com/GillesMyny1/SurveyMonkey/issues/41
