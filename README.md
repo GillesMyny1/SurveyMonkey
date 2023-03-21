@@ -53,6 +53,7 @@ Razem Shahin - 101128970
 - [Choice Question and Answer Unit Tests][i36]
 - [Design UML Class Diagrams][i37]
 - [Design ER diagrams][i41]
+- [Design UML and ER diagrams][p44]
 
 **Weekly Scrum Issue [Link][i33] (15/3/2023)**  
 **Weekly Scrum Issue [Link][i40] (22/3/2023)**
@@ -100,3 +101,5 @@ Razem Shahin - 101128970
 [i40]: https://github.com/GillesMyny1/SurveyMonkey/issues/40
 [i41]: https://github.com/GillesMyny1/SurveyMonkey/issues/41
 [i42]: https://github.com/GillesMyny1/SurveyMonkey/issues/42
+[p44]: https://github.com/GillesMyny1/SurveyMonkey/pull/44
+
