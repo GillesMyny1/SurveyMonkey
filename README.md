@@ -59,11 +59,14 @@ Razem Shahin - 101128970
 
 ## Milestone 3: Final Demo
 
-## UML Diagram
-(insert here)
+## UML Diagram - Model
+![UML Class Diagram - Model](https://user-images.githubusercontent.com/60025134/226721632-38eac714-4034-42b3-98e1-a00bcde8f0a0.png)
+
+## UML Diagram - Controllers and Services
+![UML Class Diagram - Controllers and Services](https://user-images.githubusercontent.com/60025134/226721698-243016ed-f4b4-447e-882c-cc5cae9bff8c.png)
 
 ## ER Diagram
-(insert here)
+![ER Diagram](https://user-images.githubusercontent.com/60025134/226721755-557bb023-fda3-4000-a963-69a727bb756e.png)
 
 
 [i1]: https://github.com/GillesMyny1/SurveyMonkey/issues/1
