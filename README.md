@@ -66,7 +66,7 @@ Razem Shahin - 101128970
 ![UML Class Diagram - Controllers and Services](https://user-images.githubusercontent.com/60025134/226721698-243016ed-f4b4-447e-882c-cc5cae9bff8c.png)
 
 ## ER Diagram
-![ER Diagram](https://user-images.githubusercontent.com/60025134/226721755-557bb023-fda3-4000-a963-69a727bb756e.png)
+![ER Diagram](https://user-images.githubusercontent.com/60025134/226722723-9d3b76be-84cd-45fa-b04b-c11525abf9ad.png)
 
 
 [i1]: https://github.com/GillesMyny1/SurveyMonkey/issues/1
