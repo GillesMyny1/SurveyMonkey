@@ -38,8 +38,12 @@ Razem Shahin - 101128970
 
 ## Milestone 3: Final Demo
 
-## Database Schema
-(generate database diagram from intellij and link here)
+## UML Diagram
+(insert here)
+
+## ER Diagram
+(insert here)
+
 
 [i1]: https://github.com/GillesMyny1/SurveyMonkey/issues/1
 [i4]: https://github.com/GillesMyny1/SurveyMonkey/issues/4
