@@ -37,8 +37,7 @@ Razem Shahin - 101128970
 ## Milestone 2: Alpha Release
 **Issues Added to Backlog**
 - (Milestone 3) [Choice Answer Pie Chart Viewer][i39]
-- (Milestone 3) [Range Answer Pie Chart Viewer][i42]
-- (Milestone 3) [Text Answer Pie Chart Viewer][i43]
+- (Milestone 3) [Range Answer Histogram Viewer][i42]
 
 **Issues Added to In Progress**
 - none in progress, all issues completed in time frame
@@ -98,4 +97,3 @@ Razem Shahin - 101128970
 [i40]: https://github.com/GillesMyny1/SurveyMonkey/issues/40
 [i41]: https://github.com/GillesMyny1/SurveyMonkey/issues/41
 [i42]: https://github.com/GillesMyny1/SurveyMonkey/issues/42
-[i43]: https://github.com/GillesMyny1/SurveyMonkey/issues/43
