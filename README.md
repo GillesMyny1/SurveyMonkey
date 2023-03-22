@@ -9,7 +9,7 @@ Razem Shahin - 101128970
 
 ## Milestone 1: Early Prototype
 **Issues Added to Backlog**
-- (Milestone 2) #9
+- (Milestone 2) [Expand on QnA & Answer functionality][i9]
 
 **Issues Added to In Progress**
 - none in progress, all issues completed in time frame
