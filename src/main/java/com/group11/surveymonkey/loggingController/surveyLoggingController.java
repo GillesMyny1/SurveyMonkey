@@ -1,6 +1,8 @@
 package com.group11.surveymonkey.loggingController;
 
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +14,12 @@ public class surveyLoggingController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Pointcut("execution(* com.group11.surveymonkey.entity.Survey.*)")
-    private void surveyLog(){}
+    @Pointcut(value="execution(* com.group11.surveymonkey.*.*(..))")
+    public void pointCut(){};
+
+    @Before("pointCut()")
+    private void surveyLog(JoinPoint joinPoint){
+        String methodName = joinPoint.getSignature().getName();
+        logger.info("Survey method " + methodName + " executed.");
+    }
 }
