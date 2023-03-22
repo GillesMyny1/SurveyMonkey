@@ -2,10 +2,8 @@ package com.group11.surveymonkey.loggingController;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
+import org.hibernate.mapping.Join;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Profile;
@@ -19,7 +17,6 @@ public class surveyLoggingController {
 
     @Pointcut(value="execution(* com.group11.surveymonkey.*.*(..))")
     public void applicationPointCut(){};
-
     @Before("applicationPointCut()")
     private void executionLog(JoinPoint joinPoint){
         String methodName = joinPoint.getSignature().getName();
@@ -29,7 +26,7 @@ public class surveyLoggingController {
     @Around("applicationPointCut()")
     private void timingLog(ProceedingJoinPoint joinPoint) throws Throwable {
         long startTime = System.nanoTime();
-        Object result = joinPoint.proceed();
+        joinPoint.proceed();
         long endTime = System.nanoTime();
         String methodName = joinPoint.getSignature().getName();
         logger.info("Survey Method " + methodName + " executed in " + ((endTime - startTime) / 100000) + " ms");
