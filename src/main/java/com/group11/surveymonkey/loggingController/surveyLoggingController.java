@@ -24,11 +24,12 @@ public class surveyLoggingController {
     }
 
     @Around("applicationPointCut()")
-    private void timingLog(ProceedingJoinPoint joinPoint) throws Throwable {
+    private Object timingLog(ProceedingJoinPoint joinPoint) throws Throwable {
         long startTime = System.nanoTime();
-        joinPoint.proceed();
+        Object results = joinPoint.proceed();
         long endTime = System.nanoTime();
         String methodName = joinPoint.getSignature().getName();
         logger.info("Survey Method " + methodName + " executed in " + ((endTime - startTime) / 100000) + " ms");
+        return results;
     }
 }
