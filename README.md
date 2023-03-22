@@ -55,6 +55,7 @@ Razem Shahin - 101128970
 - [Design ER diagrams][i41]
 - [Design UML and ER diagrams][p44]
 - [Create Unit Tests for TextQnA and TextAnswer][i45]
+- [Add TextQnA and TextAnswer unit test cases][p46]
 
 **Weekly Scrum Issue [Link][i33] (15/3/2023)**  
 **Weekly Scrum Issue [Link][i40] (22/3/2023)**
@@ -104,3 +105,4 @@ Razem Shahin - 101128970
 [i42]: https://github.com/GillesMyny1/SurveyMonkey/issues/42
 [p44]: https://github.com/GillesMyny1/SurveyMonkey/pull/44
 [i45]: https://github.com/GillesMyny1/SurveyMonkey/issues/45
+[p46]: https://github.com/GillesMyny1/SurveyMonkey/pull/46
