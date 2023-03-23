@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>SYSC 4806 Group 11 - Survey Monkey</title>
+</head>
+<body>
+    <h1>Survey Closer</h1>
+    <h2>Current Survey Information</h2>
+    <p>Survey Name: <span th:text="${survey.surveyName}"></span></p>
+    <form method="post" th:action="@{/confirmedSurveyClose(surveyId=${survey.surveyID})}">
+        <label for="closeSurveyButton">Are you sure you'd like to close the survey?</label>
+        <button type="submit" id="closeSurveyButton">Close</button>
+    </form>
+    <a th:href="@{/surveyHome}">No, return to Survey Display</a>
+</body>
+</html>

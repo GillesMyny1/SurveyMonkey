@@ -2,16 +2,22 @@ package com.group11.surveymonkey;
 
 import com.group11.surveymonkey.entity.*;
 import com.group11.surveymonkey.repository.*;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class SurveyWebController {
+    @Autowired
+    private UserRepository userRepository;
+
     @Autowired
     private SurveyRepository surveyRepository;
 
@@ -33,14 +39,59 @@ public class SurveyWebController {
     @Autowired
     private ChoiceAnswerRepository choiceAnswerRepository;
 
+    @GetMapping("/index")
+    public String displayHome() {
+        return "login";
+    }
+
+    @GetMapping("/logout")
+    public String userLogout(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if(session != null) {
+            session.invalidate();
+        }
+        return "redirect:/index";
+    }
+
+    @PostMapping("/login")
+    public String userLogin(HttpServletRequest request, Model model, @RequestParam("username") String username, @RequestParam("password") String password) {
+        List<User> users = (List<User>) userRepository.findAll();
+        for(User user : users) {
+            if(user.getUsername().equals(username) && user.getPassword().equals(password)) {
+                HttpSession session = request.getSession();
+                if(user.getType().equals(User.UserType.ADMIN)) {
+                    session.setAttribute("userType", "ADMIN");
+                } else if(user.getType().equals(User.UserType.STANDARD)) {
+                    session.setAttribute("userType", "STANDARD");
+                }
+                return "redirect:/surveyHome";
+            }
+        }
+        model.addAttribute("error", "Invalid username or password");
+        return "login";
+    }
+
     @RequestMapping("/surveyHome")
-    public String displaySurvey(Model model) {
+    public String displaySurvey(HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession(false);
+        if(session == null) {
+            model.addAttribute("error", "Must login to access this functionality");
+            return "login";
+        }
         model.addAttribute("surveyList", surveyRepository.findAll());
         return "surveyDisplay";
     }
 
     @GetMapping("/createSurvey")
-    public String surveyForm(Model model) {
+    public String surveyForm(HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession(false);
+        if(session == null) {
+            model.addAttribute("error", "Must login to access this functionality");
+            return "login";
+        } else if(session.getAttribute("userType") != "ADMIN") {
+            model.addAttribute("error", "Must be admin to access this functionality");
+            return "redirect:/surveyHome";
+        }
         model.addAttribute("newSurvey", new Survey());
         return "surveyCreate";
     }
@@ -52,7 +103,15 @@ public class SurveyWebController {
     }
 
     @GetMapping("/editSurveyInfo/{id}")
-    public String editSurveyForm(@PathVariable("id") Integer surveyId, Model model) {
+    public String editSurveyForm(HttpServletRequest request, @PathVariable("id") Integer surveyId, Model model) {
+        HttpSession session = request.getSession(false);
+        if(session == null) {
+            model.addAttribute("error", "Must login to access this functionality");
+            return "login";
+        } else if(session.getAttribute("userType") != "ADMIN") {
+            model.addAttribute("error", "Must be admin to access this functionality");
+            return "redirect:/surveyHome";
+        }
         Survey survey = surveyRepository.findById(surveyId).get();
         model.addAttribute("survey", survey);
         return "editSurvey";
@@ -66,8 +125,61 @@ public class SurveyWebController {
         return "redirect:/surveyHome";
     }
 
+    @GetMapping("/closeSurvey/{id}")
+    public String closeSurveyForm(HttpServletRequest request, @PathVariable("id") Integer surveyId, Model model) {
+        HttpSession session = request.getSession(false);
+        if(session == null) {
+            model.addAttribute("error", "Must login to access this functionality");
+            return "login";
+        } else if(session.getAttribute("userType") != "ADMIN") {
+            model.addAttribute("error", "Must be admin to access this functionality");
+            return "redirect:/surveyHome";
+        }
+        Survey survey = surveyRepository.findById(surveyId).get();
+        model.addAttribute("survey", survey);
+        model.addAttribute("surveyId", surveyId);
+        return "surveyClose";
+    }
+
+    @PostMapping("/confirmedSurveyClose")
+    public String confirmCloseSurvey(@RequestParam("surveyId") Integer surveyId) {
+        Survey survey = surveyRepository.findById(surveyId).get();
+        survey.setActiveStatus(false);
+        surveyRepository.save(survey);
+        return "redirect:/surveyHome";
+    }
+
+    @GetMapping("/survey/{id}/viewResults")
+    public String viewSurveyResults(HttpServletRequest request, @PathVariable("id") Integer surveyId, Model model) {
+        HttpSession session = request.getSession(false);
+        if(session == null) {
+            model.addAttribute("error", "Must login to access this functionality");
+            return "login";
+        } else if(session.getAttribute("userType") != "ADMIN") {
+            model.addAttribute("error", "Must be admin to access this functionality");
+            return "redirect:/surveyHome";
+        }
+        Survey survey = surveyRepository.findById(surveyId).get();
+
+        List<RangeQnA> rangeQnAs = survey.getRangeList();
+
+        model.addAttribute("survey", survey);
+        model.addAttribute("surveyId", surveyId);
+        model.addAttribute("rangeQnAs", rangeQnAs);
+
+        return "resultViewer";
+    }
+
     @GetMapping("/survey/{id}/addTextQuestion")
-    public String textQnAForm(@PathVariable("id") Integer id, Model model) {
+    public String textQnAForm(HttpServletRequest request, @PathVariable("id") Integer id, Model model) {
+        HttpSession session = request.getSession(false);
+        if(session == null) {
+            model.addAttribute("error", "Must login to access this functionality");
+            return "login";
+        } else if(session.getAttribute("userType") != "ADMIN") {
+            model.addAttribute("error", "Must be admin to access this functionality");
+            return "redirect:/surveyHome";
+        }
         Survey survey = surveyRepository.findById(id).get();
         TextQnA textQnA = new TextQnA();
         model.addAttribute("survey", survey);
@@ -86,7 +198,15 @@ public class SurveyWebController {
     }
 
     @GetMapping("/survey/{id}/addRangeQuestion")
-    public String rangeQnAForm(@PathVariable("id") Integer id, Model model) {
+    public String rangeQnAForm(HttpServletRequest request, @PathVariable("id") Integer id, Model model) {
+        HttpSession session = request.getSession(false);
+        if(session == null) {
+            model.addAttribute("error", "Must login to access this functionality");
+            return "login";
+        } else if(session.getAttribute("userType") != "ADMIN") {
+            model.addAttribute("error", "Must be admin to access this functionality");
+            return "redirect:/surveyHome";
+        }
         Survey survey = surveyRepository.findById(id).get();
         RangeQnA rangeQnA = new RangeQnA();
         model.addAttribute("survey", survey);
@@ -105,7 +225,15 @@ public class SurveyWebController {
     }
 
     @GetMapping("/survey/{id}/addChoiceQuestion")
-    public String choiceQnAForm(@PathVariable("id") Integer id, Model model) {
+    public String choiceQnAForm(HttpServletRequest request, @PathVariable("id") Integer id, Model model) {
+        HttpSession session = request.getSession(false);
+        if(session == null) {
+            model.addAttribute("error", "Must login to access this functionality");
+            return "login";
+        } else if(session.getAttribute("userType") != "ADMIN") {
+            model.addAttribute("error", "Must be admin to access this functionality");
+            return "redirect:/surveyHome";
+        }
         Survey survey = surveyRepository.findById(id).get();
         ChoiceQnA choiceQnA = new ChoiceQnA();
         model.addAttribute("survey", survey);
@@ -157,7 +285,15 @@ public class SurveyWebController {
     }
 
     @GetMapping("/textQnA/{QnAId}/viewAnswers")
-    public String viewTextQnAAnswers(@PathVariable("QnAId") Integer QnAId, Model model) {
+    public String viewTextQnAAnswers(HttpServletRequest request, @PathVariable("QnAId") Integer QnAId, Model model) {
+        HttpSession session = request.getSession(false);
+        if(session == null) {
+            model.addAttribute("error", "Must login to access this functionality");
+            return "login";
+        } else if(session.getAttribute("userType") != "ADMIN") {
+            model.addAttribute("error", "Must be admin to access this functionality");
+            return "redirect:/surveyHome";
+        }
         TextQnA textQnA = textQnARepository.findById(QnAId).get();
         List<TextAnswer> answers = textQnA.getTextAnswers();
         model.addAttribute("textQnA", textQnA);
@@ -192,7 +328,15 @@ public class SurveyWebController {
     }
 
     @GetMapping("/rangeQnA/{QnAId}/viewAnswers")
-    public String viewRangeQnAAnswers(@PathVariable("QnAId") Integer QnAId, Model model) {
+    public String viewRangeQnAAnswers(HttpServletRequest request, @PathVariable("QnAId") Integer QnAId, Model model) {
+        HttpSession session = request.getSession(false);
+        if(session == null) {
+            model.addAttribute("error", "Must login to access this functionality");
+            return "login";
+        } else if(session.getAttribute("userType") != "ADMIN") {
+            model.addAttribute("error", "Must be admin to access this functionality");
+            return "redirect:/surveyHome";
+        }
         RangeQnA rangeQnA = rangeQnARepository.findById(QnAId).get();
         List<RangeAnswer> answers = rangeQnA.getRangeAnswers();
         model.addAttribute("rangeQnA", rangeQnA);
@@ -227,7 +371,15 @@ public class SurveyWebController {
     }
 
     @GetMapping("/choiceQnA/{QnAId}/viewAnswers")
-    public String viewChoiceQnAAnswers(@PathVariable("QnAId") Integer QnAId, Model model) {
+    public String viewChoiceQnAAnswers(HttpServletRequest request, @PathVariable("QnAId") Integer QnAId, Model model) {
+        HttpSession session = request.getSession(false);
+        if(session == null) {
+            model.addAttribute("error", "Must login to access this functionality");
+            return "login";
+        } else if(session.getAttribute("userType") != "ADMIN") {
+            model.addAttribute("error", "Must be admin to access this functionality");
+            return "redirect:/surveyHome";
+        }
         ChoiceQnA choiceQnA = choiceQnARepository.findById(QnAId).get();
         List<ChoiceAnswer> answers = choiceQnA.getChoiceAnswers();
         model.addAttribute("choiceQnA", choiceQnA);

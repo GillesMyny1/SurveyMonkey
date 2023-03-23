@@ -17,7 +17,7 @@
   </style>
 </head>
 <body>
-  <h1>Survey Display</h1>
+  <h1>Active Survey Display</h1>
   <table>
     <thead>
       <tr>
@@ -26,15 +26,18 @@
       </tr>
     </thead>
     <tbody>
-    <th:block th:each="survey : ${surveyList}">
+    <th:block th:each="survey : ${surveyList}" th:if="${survey.getActiveStatus()}">
       <tr>
         <td th:text="${survey.surveyID}"></td>
         <td th:text="${survey.surveyName}"></td>
         <td>
-          <a th:href="@{editSurveyInfo/{id}(id=${survey.getSurveyID()})}">Edit</a>
-          <a th:href="@{survey/{id}/addTextQuestion(id=${survey.getSurveyID()})}">Add Text Question</a>
-          <a th:href="@{survey/{id}/addRangeQuestion(id=${survey.getSurveyID()})}">Add Range Question</a>
-          <a th:href="@{survey/{id}/addChoiceQuestion(id=${survey.getSurveyID()})}">Add Choice Question</a>
+          <div th:if="${session.userType == 'ADMIN'}">
+            <a th:href="@{editSurveyInfo/{id}(id=${survey.getSurveyID()})}">Edit</a>
+            <a th:href="@{closeSurvey/{id}(id=${survey.getSurveyID()})}">Close Survey</a>
+            <a th:href="@{survey/{id}/addTextQuestion(id=${survey.getSurveyID()})}">Add Text Question</a>
+            <a th:href="@{survey/{id}/addRangeQuestion(id=${survey.getSurveyID()})}">Add Range Question</a>
+            <a th:href="@{survey/{id}/addChoiceQuestion(id=${survey.getSurveyID()})}">Add Choice Question</a>
+          </div>
           <a th:href="@{survey/{id}/viewQuestions(id=${survey.getSurveyID()})}">View Questions</a>
         </td>
       </tr>
@@ -42,7 +45,33 @@
     </tbody>
   </table>
 
+  <div th:if="${session.userType == 'ADMIN'}">
+    <h1>Closed Survey Display</h1>
+    <table>
+      <thead>
+      <tr>
+        <th>Survey ID</th>
+        <th>Survey Name</th>
+      </tr>
+      </thead>
+      <tbody>
+      <th:block th:each="survey : ${surveyList}" th:if="${!survey.getActiveStatus()}">
+        <tr>
+          <td th:text="${survey.surveyID}"></td>
+          <td th:text="${survey.surveyName}"></td>
+          <td>
+            <a th:href="@{survey/{id}/viewResults(id=${survey.getSurveyID()})}">View Results</a>
+          </td>
+        </tr>
+      </th:block>
+      </tbody>
+    </table>
+  </div>
+
   <h1>Commands</h1>
-  <a href="/createSurvey" id="createSurveyLink">Add a New Survey</a>
+  <div th:if="${session.userType == 'ADMIN'}">
+    <a href="/createSurvey" id="createSurveyLink">Add a New Survey</a>
+  </div>
+  <a href="/logout" id="logoutLink">Logout</a>
 </body>
 </html>

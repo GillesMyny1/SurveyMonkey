@@ -12,7 +12,9 @@
             <div>
                 <span th:text="${textQnA.questionText}" />
                 <a th:href="@{/answerTextQnA/{surveyId}/{QnAId}(surveyId=${survey.getSurveyID()}, QnAId=${textQnA.id})}">Answer this question</a>
-                <a th:href="@{/textQnA/{QnAId}/viewAnswers(QnAId=${textQnA.id})}">View answers to this question</a>
+                <div th:if="${session.userType == 'ADMIN'}">
+                    <a th:href="@{/textQnA/{QnAId}/viewAnswers(QnAId=${textQnA.id})}">View answers to this question</a>
+                </div>
             </div>
         </li>
     </ul>
@@ -22,7 +24,9 @@
             <div>
                 <span th:text="${rangeQnA.questionText}" />
                 <a th:href="@{/answerRangeQnA/{surveyId}/{QnAId}(surveyId=${survey.getSurveyID()}, QnAId=${rangeQnA.id})}">Answer this question</a>
-                <a th:href="@{/rangeQnA/{QnAId}/viewAnswers(QnAId=${rangeQnA.id})}">View answers to this question</a>
+                <div th:if="${session.userType == 'ADMIN'}">
+                    <a th:href="@{/rangeQnA/{QnAId}/viewAnswers(QnAId=${rangeQnA.id})}">View answers to this question</a>
+                </div>
             </div>
         </li>
     </ul>
@@ -32,7 +36,9 @@
             <div>
                 <span th:text="${choiceQnA.questionText}" />
                 <a th:href="@{/answerChoiceQnA/{surveyId}/{QnAId}(surveyId=${survey.getSurveyID()}, QnAId=${choiceQnA.id})}">Answer this question</a>
-                <a th:href="@{/choiceQnA/{QnAId}/viewAnswers(QnAId=${choiceQnA.id})}">View answers to this question</a>
+                <div th:if="${session.userType == 'ADMIN'}">
+                    <a th:href="@{/choiceQnA/{QnAId}/viewAnswers(QnAId=${choiceQnA.id})}">View answers to this question</a>
+                </div>
             </div>
         </li>
     </ul>

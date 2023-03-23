@@ -9,6 +9,8 @@ public class Survey {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id = null;
     private String surveyName;
+    private Boolean activeStatus = true;
+
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<TextQnA> textList;
 
@@ -40,6 +42,14 @@ public class Survey {
 
     public void addRangeQnA(RangeQnA newQuestion){
         this.rangeList.add(newQuestion);
+    }
+
+    public void setActiveStatus(Boolean status) {
+        this.activeStatus = status;
+    }
+
+    public Boolean getActiveStatus() {
+        return this.activeStatus;
     }
 
     public List<TextQnA> getTextList() {
