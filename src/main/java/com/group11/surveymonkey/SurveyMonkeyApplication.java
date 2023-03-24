@@ -22,10 +22,13 @@ public class SurveyMonkeyApplication {
     public static final Logger log = LoggerFactory.getLogger(SurveyMonkeyApplication.class);
 
     @Bean
-    public CommandLineRunner demo(SurveyRepository repositorySurvey, TextQnARepository textQnARepository, RangeQnARepository rangeQnARepository,
+    public CommandLineRunner demo(UserRepository userRepository, SurveyRepository repositorySurvey, TextQnARepository textQnARepository, RangeQnARepository rangeQnARepository,
                                   ChoiceQnARepository choiceQnARepository, TextAnswerRepository textAnswerRepository, RangeAnswerRepository
                                   rangeAnswerRepository, ChoiceAnswerRepository choiceAnswerRepository) {
         return (args) -> {
+            User admin = new User("admin", "admin", User.UserType.ADMIN);
+            User standard = new User("standard", "standard", User.UserType.STANDARD);
+
             Survey s = new Survey("Default App Survey");
 
             TextQnA tq = new TextQnA("Is this a text question?");
@@ -55,6 +58,17 @@ public class SurveyMonkeyApplication {
             s.addChoiceQnA(cq);
 
             repositorySurvey.save(s);
+            userRepository.save(admin);
+            userRepository.save(standard);
+
+            log.info("User found with findAll()");
+            log.info("---------------------------------");
+            Iterable<User> users = userRepository.findAll();
+            for(User user : users) {
+                log.info("User ID: " + user.getId());
+                log.info("User Name: " + user.getUsername());
+            }
+            log.info("");
 
             log.info("Survey found with findAll()");
             log.info("---------------------------------");
