@@ -3,10 +3,49 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <title>SYSC 4806 Group 11 - Survey Monkey</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
+  <h2>Text Question Results</h2>
   <h2>Range Question Results</h2>
+  <div th:each="range : ${rangeData}">
+    <div th:id="'histogram-' + ${rangeStat.index}" style="width: 800px; height: 400px;"></div>
+    <script th:inline="javascript">
+      var numBins = [[${range[1].stream().distinct().count()}]];
+      var colors = [];
+      for (var i = 0; i < numBins; i++) {
+        colors.push('#' + Math.floor(Math.random() * 16777215).toString(16));
+      }
+      var trace = {
+        x: [[${range[1]}]],
+        type: 'histogram',
+        marker: {
+          color: colors
+        },
+        opacity: 0.75
+      };
+      var data = [trace];
+      var layout = {
+        title: [[${range[0]}]],
+        xaxis: {
+          title: 'Range',
+          showgrid: true,
+          zeroline: false,
+          tickmode: 'linear',
+          dtick: 1
+        },
+        yaxis: {
+          title: 'Occurrences',
+          showgrid: true,
+          zeroline: false,
+          tickmode: 'linear',
+          dtick: 1
+        }
+      };
+      Plotly.newPlot('histogram-' + [[${rangeStat.index}]], data, layout);
+    </script>
+  </div>
+  <h2>Choice Question Results</h2>
   <a th:href="@{/surveyHome}">Return to Survey Display</a>
 </body>
 </html>

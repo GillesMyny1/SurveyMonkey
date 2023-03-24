@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -162,10 +163,18 @@ public class SurveyWebController {
         Survey survey = surveyRepository.findById(surveyId).get();
 
         List<RangeQnA> rangeQnAs = survey.getRangeList();
+        List<List<Object>> rangeData = new ArrayList<>();
+        for(RangeQnA rangeQnA : rangeQnAs) {
+            List<Integer> rangeAnswers = new ArrayList<>();
+            for(RangeAnswer rangeAnswer : rangeQnA.getRangeAnswers()) {
+                rangeAnswers.add(rangeAnswer.getAnswer());
+            }
+            rangeData.add(List.of(rangeQnA.getQuestionText(), rangeAnswers));
+        }
 
         model.addAttribute("survey", survey);
         model.addAttribute("surveyId", surveyId);
-        model.addAttribute("rangeQnAs", rangeQnAs);
+        model.addAttribute("rangeData", rangeData);
 
         return "resultViewer";
     }
