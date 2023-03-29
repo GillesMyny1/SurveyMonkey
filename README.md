@@ -128,8 +128,8 @@ Razem Shahin - 101128970
 [i51]: https://github.com/GillesMyny1/SurveyMonkey/issues/51
 [i52]: https://github.com/GillesMyny1/SurveyMonkey/issues/52
 [i53]: https://github.com/GillesMyny1/SurveyMonkey/issues/53
-[i54]: https://github.com/GillesMyny1/SurveyMonkey/issues/54
-[i55]: https://github.com/GillesMyny1/SurveyMonkey/issues/55
-[i56]: https://github.com/GillesMyny1/SurveyMonkey/issues/56
+[p54]: https://github.com/GillesMyny1/SurveyMonkey/issues/54
+[p55]: https://github.com/GillesMyny1/SurveyMonkey/issues/55
+[p56]: https://github.com/GillesMyny1/SurveyMonkey/issues/56
 [i48]: https://github.com/GillesMyny1/SurveyMonkey/issues/48
 [i49]: https://github.com/GillesMyny1/SurveyMonkey/issues/49
