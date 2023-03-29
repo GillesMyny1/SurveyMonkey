@@ -13,75 +13,72 @@ public class SurveyAspect {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Pointcut(value="execution(* com.group11.surveymonkey.repository.SurveyRepository.*(..))")
+    @Pointcut("execution(* com.group11.surveymonkey.repository.SurveyRepository.*(..))")
     public void surveyPointCut(){}
 
-    @Before("surveyPointCut() && args(input))")
-    private void outputLog(JoinPoint joinPoint, Survey input) {
-        String methodName = joinPoint.getSignature().getName();
-        String surveyString = "Survey method '" + methodName + "' executed with input: " + "\nID: " + input.getSurveyID() + ", Name: " + input.getSurveyName();
-        //TextQnA
-        if(!input.getTextList().isEmpty()){
-            surveyString = surveyString.concat("\n\tText Questions:");
-            for(TextQnA textQnA : input.getTextList()){
-                surveyString = surveyString.concat("\n\t\tQuestion ID: " + textQnA.getId() + "\n\t\tQuestion Text: " + textQnA.getQuestionText());
-                if(!textQnA.getTextAnswers().isEmpty()){
-                    surveyString = surveyString.concat("\n\t\tAnswer: ");
-                    for(TextAnswer textAnswer : textQnA.getTextAnswers()){
-                        surveyString = surveyString.concat("\n\t\t\tAnswer ID: " + textAnswer.getId() + "\n\t\t\tAnswer: " + textAnswer.getAnswer());
-                    }
-                }else{
-                    surveyString = surveyString.concat("\n\t\tNo answers");
-                }
-                surveyString = surveyString.concat("\n\t\tNo text questions");
-            }
-        }
-        //RangeQnA
-        if(!input.getRangeList().isEmpty()){
-            surveyString = surveyString.concat("\n\tRange Questions: ");
-            for(RangeQnA rangeQnA : input.getRangeList()){
-                surveyString = surveyString.concat("\n\t\tQuestion ID: " + rangeQnA.getId() + "\n\t\tQuestion Text: " + rangeQnA.getQuestionText() + "\n\t\tRange: [" + rangeQnA.getMinimum() + ", " + rangeQnA.getMaximum() + "]" + "\n\t\tStep: " + rangeQnA.getStep());
-                if(!rangeQnA.getRangeAnswers().isEmpty()){
-                    surveyString = surveyString.concat("Answers: ");
-                    for(RangeAnswer rangeAnswer : rangeQnA.getRangeAnswers()){
-                        surveyString = surveyString.concat("\n\t\t\tAnswer ID: " + rangeAnswer.getId() + "\n\t\t\tAnswer: " + rangeAnswer.getAnswer());
-                    }
-                }else{
-                    surveyString = surveyString.concat("\n\t\tNo answers");
-                }
-            }
-        }else{
-            surveyString = surveyString.concat("\n\t\tNo range questions");
-        }
-        //ChoiceQnA
-        if (!input.getChoiceList().isEmpty()) {
-            surveyString = surveyString.concat("\n\tChoice Questions:");
-            for (ChoiceQnA choiceQnA : input.getChoiceList()) {
-                surveyString = surveyString.concat("\n\t\tQuestion ID: " + choiceQnA.getId() + "\n\t\tQuestion Text: " + choiceQnA.getQuestionText() + "\n\t\tChoices: ");
-                for (String choice : choiceQnA.getChoices()) {
-                    surveyString = surveyString.concat("\n\t\t\t" + choice);
-                }
-                if (!choiceQnA.getChoiceAnswers().isEmpty()) {
-                    surveyString = surveyString.concat("\n\t\tAnswers: ");
-                    for (ChoiceAnswer choiceAnswer : choiceQnA.getChoiceAnswers()) {
-                        surveyString = surveyString.concat("\n\t\t\tAnswer ID: " + choiceAnswer.getId() + "\n\t\t\tAnswer: " + choiceAnswer.getAnswer());
-                    }
-                } else {
-                    surveyString = surveyString.concat("\n\t\tNo answers");
-                }
-            }
-        }else{
-            surveyString = surveyString.concat("\n\t\tNo choice questions");
-        }
-        logger.info(surveyString);
-    }
-    @Around("surveyPointCut()")
-    private Object timingLog(ProceedingJoinPoint joinPoint) throws Throwable {
+    @Around("surveyPointCut() && args(input))")
+    private void surveySaveLog(ProceedingJoinPoint joinPoint, Survey input) throws Throwable {
         long startTime = System.nanoTime();
         Object results = joinPoint.proceed();
         long endTime = System.nanoTime();
         String methodName = joinPoint.getSignature().getName();
-        logger.info("Survey Method " + methodName + " executed in " + ((endTime - startTime) / 100000) + " ms");
-        return results;
+        String surveyString = "Survey method '" + methodName + "' executed in " + ((endTime - startTime) / 100000) +
+                " ms with input: " + "\nID: " + input.getSurveyID() + ", Name: " + input.getSurveyName();
+        logger.info(surveyString);
+    }
+
+    @Pointcut("execution(* com.group11.surveymonkey.repository.ChoiceQnARepository.*(..))")
+    public void choiceQnAPointCut(){}
+
+    @After("choiceQnAPointCut() && args(input)")
+    private void choiceQnALogging(ChoiceQnA input){
+        String log = "\n\t\tQuestion ID: " + input.getId() + "\n\t\tQuestion Text: " + input.getQuestionText() + "\n\t\tChoices: ";
+        for(String choice : input.getChoices()){
+            log = log.concat("\n\t\t\t" + choice);
+        }
+        if(!input.getChoiceAnswers().isEmpty()) {
+            log = log.concat("\n\t\tAnswers: ");
+            for (ChoiceAnswer answer : input.getChoiceAnswers()) {
+                log = log.concat("\n\t\t\tAnswer ID: " + answer.getId() + "\n\t\t\tAnswer: " + answer.getAnswer());
+            }
+        }else{
+            log.concat("\n\t\tNo answers");
+        }
+        logger.info(log);
+    }
+
+    @Pointcut("execution(* com.group11.surveymonkey.repository.TextQnARepository.*(..))")
+    public void textQnAPointCut(){}
+
+    @After("textQnAPointCut() && args(input)")
+    private void textQnALogging(TextQnA input){
+        String log = "\n\t\tQuestion ID: " + input.getId() + "\n\t\tQuestion Text: " + input.getQuestionText();
+        if(!input.getTextAnswers().isEmpty()) {
+            log = log.concat("\n\t\tAnswers: ");
+            for (TextAnswer answer : input.getTextAnswers()) {
+                log = log.concat("\n\t\t\tAnswer ID: " + answer.getId() + "\n\t\t\tAnswer: " + answer.getAnswer());
+            }
+        }else{
+            log.concat("\n\t\tNo answers");
+        }
+        logger.info(log);
+    }
+
+    @Pointcut("execution(* com.group11.surveymonkey.repository.RangeQnARepository.*(..))")
+    public void rangeQnAPointCut(){}
+
+    @After("rangeQnAPointCut() && args(input)")
+    private void rangeQnALogging(RangeQnA input){
+        String log = "\n\t\tQuestion ID: " + input.getId() + "\n\t\tQuestion Text: " + input.getQuestionText() + "\n\t\tRange: [" + input.getMinimum() + ", " + input.getMaximum() + "]" + "\n\t\tStep: " + input.getStep();
+        if(!input.getRangeAnswers().isEmpty()) {
+            log = log.concat("\n\t\tAnswers: ");
+            for (RangeAnswer answer : input.getRangeAnswers()) {
+                log = log.concat("\n\t\t\tAnswer ID: " + answer.getId() + "\n\t\t\tAnswer: " + answer.getAnswer());
+            }
+        }else{
+            log.concat("\n\t\tNo answers");
+        }
+        logger.info(log);
+
     }
 }
