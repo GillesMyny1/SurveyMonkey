@@ -61,6 +61,24 @@ Razem Shahin - 101128970
 **Weekly Scrum Issue [Link][i40] (22/3/2023)**
 
 ## Milestone 3: Final Demo
+**Issues Added to Backlog**
+- None, project complete
+
+**Issues Added to In Progress**
+- None, project complete
+
+**Issues Added to Completed**
+- [Range Answer Histogram Viewer][i42]
+- [Text Answer Pie Chart Viewer][i43]
+- [Add User Entity and Perform Authorization Checks][i51]
+- [Add Closing Survey Feature][i52]
+- [Add Survey Unit Tests][i53]
+- [Added Closing Survey Feature, User Entity Feature, and Perform Authorization Checks Feature][p54]
+- [Added Unit Tests for Survey Entity][p55]
+- [Added Histogram Viewer for Range Questions for a Closed Survey][p56]
+
+**Weekly Scrum Issue [Link][i48] (29/3/2023)**  
+**Weekly Scrum Issue [Link][i49] (5/4/2023)**
 
 ## UML Diagram - Model
 ![UML Class Diagram - Model](https://user-images.githubusercontent.com/60025134/226721632-38eac714-4034-42b3-98e1-a00bcde8f0a0.png)
@@ -106,3 +124,12 @@ Razem Shahin - 101128970
 [p44]: https://github.com/GillesMyny1/SurveyMonkey/pull/44
 [i45]: https://github.com/GillesMyny1/SurveyMonkey/issues/45
 [p46]: https://github.com/GillesMyny1/SurveyMonkey/pull/46
+[i43]: https://github.com/GillesMyny1/SurveyMonkey/issues/43
+[i51]: https://github.com/GillesMyny1/SurveyMonkey/issues/51
+[i52]: https://github.com/GillesMyny1/SurveyMonkey/issues/52
+[i53]: https://github.com/GillesMyny1/SurveyMonkey/issues/53
+[i54]: https://github.com/GillesMyny1/SurveyMonkey/issues/54
+[i55]: https://github.com/GillesMyny1/SurveyMonkey/issues/55
+[i56]: https://github.com/GillesMyny1/SurveyMonkey/issues/56
+[i48]: https://github.com/GillesMyny1/SurveyMonkey/issues/48
+[i49]: https://github.com/GillesMyny1/SurveyMonkey/issues/49
