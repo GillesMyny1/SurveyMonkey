@@ -46,6 +46,31 @@
     </script>
   </div>
   <h2>Choice Question Results</h2>
+  <div th:each="choice : ${choiceData}">
+    <div th:id="'pie-' + ${choiceStat.index}" style="width: 800px; height: 400px;"></div>
+    <script th:inline="javascript">
+      var numBins = [[${choice[1].stream().distinct().count()}]];
+      var colors = [];
+      for (var i = 0; i < numBins; i++) {
+        colors.push('#' + Math.floor(Math.random() * 16777215).toString(16));
+      }
+      var trace = {
+        labels: [[${choice[1]}]],
+        type: 'pie',
+        marker: {
+          color: colors
+        },
+        opacity: 0.75
+      };
+      var data = [trace];
+      var layout = {
+        title: [[${choice[0]}]],
+        height: 400,
+        width: 500
+      };
+      Plotly.newPlot('pie-' + [[${choiceStat.index}]], data, layout);
+    </script>
+  </div>
   <a th:href="@{/surveyHome}">Return to Survey Display</a>
 </body>
 </html>
