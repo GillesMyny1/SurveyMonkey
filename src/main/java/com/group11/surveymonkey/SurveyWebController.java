@@ -172,9 +172,20 @@ public class SurveyWebController {
             rangeData.add(List.of(rangeQnA.getQuestionText(), rangeAnswers));
         }
 
+        List<ChoiceQnA> choiceQnAs = survey.getChoiceList();
+        List<List<Object>> choiceData = new ArrayList<>();
+        for(ChoiceQnA choiceQnA : choiceQnAs) {
+            List<String> choiceAnswers = new ArrayList<>();
+            for(ChoiceAnswer choiceAnswer : choiceQnA.getChoiceAnswers()) {
+                choiceAnswers.add(choiceAnswer.getAnswer());
+            }
+            choiceData.add(List.of(choiceQnA.getQuestionText(), choiceAnswers));
+        }
+
         model.addAttribute("survey", survey);
         model.addAttribute("surveyId", surveyId);
         model.addAttribute("rangeData", rangeData);
+        model.addAttribute("choiceData", choiceData);
 
         return "resultViewer";
     }
