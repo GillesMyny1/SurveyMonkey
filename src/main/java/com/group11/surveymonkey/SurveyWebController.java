@@ -182,10 +182,13 @@ public class SurveyWebController {
             choiceData.add(List.of(choiceQnA.getQuestionText(), choiceAnswers));
         }
 
+        List<TextQnA> textQnAs = survey.getTextList();
+
         model.addAttribute("survey", survey);
         model.addAttribute("surveyId", surveyId);
         model.addAttribute("rangeData", rangeData);
         model.addAttribute("choiceData", choiceData);
+        model.addAttribute("textQnAs", textQnAs);
 
         return "resultViewer";
     }
