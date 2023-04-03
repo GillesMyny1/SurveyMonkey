@@ -3,10 +3,25 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <title>SYSC 4806 Group 11 - Survey Monkey</title>
+  <style>
+    #textQ {
+      border: solid 2px #707070;
+      border-radius: 10px;
+      padding: 1px 5px 5px 5px;
+      margin: 1px 2px 7px 2px;
+      background-color: #c2fc95;
+    }
+    #textA {
+      border: solid 1px #b8b8b8;
+      border-radius: 5px;
+      padding: 4px 4px;
+      margin: 1px 1px 3px 1px;
+      background-color: #f7f7f7;
+    }
+  </style>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
-  <h2>Text Question Results</h2>
   <h2>Range Question Results</h2>
   <div th:each="range : ${rangeData}">
     <div th:id="'histogram-' + ${rangeStat.index}" style="width: 800px; height: 400px;"></div>
@@ -70,6 +85,13 @@
       };
       Plotly.newPlot('pie-' + [[${choiceStat.index}]], data, layout);
     </script>
+  </div>
+  <h2>Text Question Results</h2>
+  <div id="textQ" th:each="text : ${textQnAs}">
+    <h4 th:text="${text.questionText}"></h4>
+    <div id="textA" th:each="answers : ${text.textAnswers}">
+      <div th:text="${answers.answer}"></div>
+    </div>
   </div>
   <a th:href="@{/surveyHome}">Return to Survey Display</a>
 </body>
