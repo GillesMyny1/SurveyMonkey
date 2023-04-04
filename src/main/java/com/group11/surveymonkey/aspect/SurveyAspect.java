@@ -17,7 +17,7 @@ public class SurveyAspect {
     public void surveyPointCut(){}
 
     @Around("surveyPointCut() && args(input))")
-    private void surveySaveLog(ProceedingJoinPoint joinPoint, Survey input) throws Throwable {
+    private Object surveySaveLog(ProceedingJoinPoint joinPoint, Survey input) throws Throwable {
         long startTime = System.nanoTime();
         Object results = joinPoint.proceed();
         long endTime = System.nanoTime();
@@ -25,6 +25,7 @@ public class SurveyAspect {
         String surveyString = "Survey method '" + methodName + "' executed in " + ((endTime - startTime) / 100000) +
                 " ms with input: " + "\nID: " + input.getSurveyID() + ", Name: " + input.getSurveyName();
         logger.info(surveyString);
+        return results;
     }
 
     @Pointcut("execution(* com.group11.surveymonkey.repository.ChoiceQnARepository.*(..))")
