@@ -68,14 +68,22 @@ Razem Shahin - 101128970
 - None, project complete
 
 **Issues Added to Completed**
+- [Choice Answer Pie Chart Viewer][i39]
 - [Range Answer Histogram Viewer][i42]
 - [Text Answer Pie Chart Viewer][i43]
+- [Text Answer Table Viewer][i50]
 - [Add User Entity and Perform Authorization Checks][i51]
 - [Add Closing Survey Feature][i52]
 - [Add Survey Unit Tests][i53]
 - [Added Closing Survey Feature, User Entity Feature, and Perform Authorization Checks Feature][p54]
 - [Added Unit Tests for Survey Entity][p55]
 - [Added Histogram Viewer for Range Questions for a Closed Survey][p56]
+- [Logging][p56]
+- [More Integration Tests][i58]
+- [Pie Chart Feature for results has now been added.][i59]
+- [Update UML and ER diagram][i60]
+- [Add Text QnA results view][p61]
+- [Added User, ChoiceAnswer and textAnswer integration tests.][p62]
 
 **Weekly Scrum Issue [Link][i48] (29/3/2023)**  
 **Weekly Scrum Issue [Link][i49] (5/4/2023)**
@@ -121,15 +129,22 @@ Razem Shahin - 101128970
 [i40]: https://github.com/GillesMyny1/SurveyMonkey/issues/40
 [i41]: https://github.com/GillesMyny1/SurveyMonkey/issues/41
 [i42]: https://github.com/GillesMyny1/SurveyMonkey/issues/42
+[i43]: https://github.com/GillesMyny1/SurveyMonkey/issues/43
 [p44]: https://github.com/GillesMyny1/SurveyMonkey/pull/44
 [i45]: https://github.com/GillesMyny1/SurveyMonkey/issues/45
 [p46]: https://github.com/GillesMyny1/SurveyMonkey/pull/46
-[i43]: https://github.com/GillesMyny1/SurveyMonkey/issues/43
+[i48]: https://github.com/GillesMyny1/SurveyMonkey/issues/48
+[i49]: https://github.com/GillesMyny1/SurveyMonkey/issues/49
+[i50]: https://github.com/GillesMyny1/SurveyMonkey/issues/50
 [i51]: https://github.com/GillesMyny1/SurveyMonkey/issues/51
 [i52]: https://github.com/GillesMyny1/SurveyMonkey/issues/52
 [i53]: https://github.com/GillesMyny1/SurveyMonkey/issues/53
 [p54]: https://github.com/GillesMyny1/SurveyMonkey/issues/54
 [p55]: https://github.com/GillesMyny1/SurveyMonkey/issues/55
 [p56]: https://github.com/GillesMyny1/SurveyMonkey/issues/56
-[i48]: https://github.com/GillesMyny1/SurveyMonkey/issues/48
-[i49]: https://github.com/GillesMyny1/SurveyMonkey/issues/49
+[p57]: https://github.com/GillesMyny1/SurveyMonkey/pull/57
+[i58]: https://github.com/GillesMyny1/SurveyMonkey/issues/58
+[p59]: https://github.com/GillesMyny1/SurveyMonkey/pull/59
+[i60]: https://github.com/GillesMyny1/SurveyMonkey/issues/60
+[p61]: https://github.com/GillesMyny1/SurveyMonkey/pull/61
+[p62]: https://github.com/GillesMyny1/SurveyMonkey/pull/62
