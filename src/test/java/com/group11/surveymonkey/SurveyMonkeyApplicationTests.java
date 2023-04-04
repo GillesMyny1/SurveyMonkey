@@ -1,9 +1,6 @@
 package com.group11.surveymonkey;
 
-import com.group11.surveymonkey.entity.ChoiceQnA;
-import com.group11.surveymonkey.entity.RangeQnA;
-import com.group11.surveymonkey.entity.Survey;
-import com.group11.surveymonkey.entity.TextQnA;
+import com.group11.surveymonkey.entity.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -14,6 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.*;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import static com.group11.surveymonkey.entity.User.UserType.ADMIN;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = SurveyMonkeyApplication.class, webEnvironment = WebEnvironment.RANDOM_PORT)
@@ -83,5 +82,50 @@ class SurveyMonkeyApplicationTests {
         RangeQnA question = restTemplate.postForObject("http://localhost:"+port+"/rangeQnA",request, RangeQnA.class);
         Assertions.assertNotNull(question);
         Assertions.assertEquals("Question 3?",question.getQuestionText());
+    }
+    @Test
+    void getTextAnswer(){
+        ChoiceAnswer answer = restTemplate.getForObject("http://localhost:"+port+"/textAnswer/1", ChoiceAnswer.class);
+        Assertions.assertNotNull(answer.getAnswer());
+        Assertions.assertEquals(1,answer.getId());
+    }
+
+    @Test
+    void addTextAnswer(){
+        HttpEntity<TextAnswer> request = new HttpEntity<>(new TextAnswer("Blue"));
+        TextAnswer answer = restTemplate.postForObject("http://localhost:" + port+"/choiceAnswer", request, TextAnswer.class);
+        Assertions.assertNotNull(answer);
+        Assertions.assertEquals("Blue", answer.getAnswer());
+
+    }
+    @Test
+    void getChoiceAnswer(){
+        ChoiceAnswer answer = restTemplate.getForObject("http://localhost:"+port+"/choiceAnswer/1", ChoiceAnswer.class);
+        Assertions.assertNotNull(answer.getAnswer());
+        Assertions.assertEquals(1,answer.getId());
+    }
+
+    @Test
+    void addChoiceAnswer(){
+        HttpEntity<ChoiceAnswer> request = new HttpEntity<>(new ChoiceAnswer("Blue"));
+        ChoiceAnswer answer = restTemplate.postForObject("http://localhost:" + port+"/choiceAnswer", request, ChoiceAnswer.class);
+        Assertions.assertNotNull(answer);
+        Assertions.assertEquals("Blue", answer.getAnswer());
+
+    }
+
+    @Test
+    void getUser(){
+        User user = restTemplate.getForObject("http://localhost:"+port+"/user/1", User.class);
+        Assertions.assertNotNull(user.getUsername());
+        Assertions.assertEquals(1,user.getId());
+    }
+
+    @Test
+    void addUser(){
+        HttpEntity<User> request = new HttpEntity<>(new User("admin","admin",ADMIN));
+        User user = restTemplate.postForObject("http://localhost:" + port+"/user", request, User.class);
+        Assertions.assertNotNull(user);
+        Assertions.assertEquals("admin", user.getUsername());
     }
 }
