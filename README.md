@@ -80,7 +80,7 @@ Razem Shahin - 101128970
 - [Added Histogram Viewer for Range Questions for a Closed Survey][p56]
 - [Logging][p56]
 - [More Integration Tests][i58]
-- [Pie Chart Feature for results has now been added.][i59]
+- [Pie Chart Feature for results has now been added.][p59]
 - [Update UML and ER diagram][i60]
 - [Add Text QnA results view][p61]
 - [Added User, ChoiceAnswer and textAnswer integration tests.][p62]
