@@ -84,6 +84,7 @@ Razem Shahin - 101128970
 - [Update UML and ER diagram][i60]
 - [Add Text QnA results view][p61]
 - [Added User, ChoiceAnswer and textAnswer integration tests.][p62]
+- [Update Diagrams][p63]
 
 **Weekly Scrum Issue [Link][i48] (29/3/2023)**  
 **Weekly Scrum Issue [Link][i49] (5/4/2023)**
