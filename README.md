@@ -90,13 +90,13 @@ Razem Shahin - 101128970
 **Weekly Scrum Issue [Link][i49] (5/4/2023)**
 
 ## UML Diagram - Model
-![UML Class Diagram - Model](https://user-images.githubusercontent.com/60025134/226721632-38eac714-4034-42b3-98e1-a00bcde8f0a0.png)
+![UML Class Diagram M3 - Model](https://user-images.githubusercontent.com/60025134/229944555-febdc63e-4a5b-49c3-843b-1f2665410f75.png)
 
 ## UML Diagram - Controllers and Services
-![UML Class Diagram - Controllers and Services](https://user-images.githubusercontent.com/60025134/226721698-243016ed-f4b4-447e-882c-cc5cae9bff8c.png)
+![UML Class Diagram M3 - Controllers and Services](https://user-images.githubusercontent.com/60025134/229944588-5495da86-d38e-4235-aae2-c476ab3fd6c8.png)
 
 ## ER Diagram
-![ER Diagram](https://user-images.githubusercontent.com/60025134/226722723-9d3b76be-84cd-45fa-b04b-c11525abf9ad.png)
+![ER Diagram M3](https://user-images.githubusercontent.com/60025134/229944602-eb3e49bc-f220-4ac4-b16c-7ff390717bbb.png)
 
 
 [i1]: https://github.com/GillesMyny1/SurveyMonkey/issues/1
