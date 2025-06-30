@@ -2,10 +2,10 @@
 ![Build](https://github.com/GillesMyny1/SurveyMonkey/actions/workflows/maven.yml/badge.svg)
 
 ## Authors
-Gilles Myny
-Joshua Gatto
-Frank Dow
-Razem Shahin
+Gilles Myny    
+Joshua Gatto    
+Frank Dow    
+Razem Shahin    
 
 ## Milestone 1: Early Prototype
 **Issues Added to Backlog**
